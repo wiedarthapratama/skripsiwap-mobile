@@ -48,30 +48,33 @@ class WPrimaryButton extends StatelessWidget {
       );
     }
 
-    return GestureDetector(
-      onTap: isEnable ? onTap : null,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        height: height,
-        decoration: BoxDecoration(color: _color, borderRadius: WRadius.size6),
-        child: Row(
-          mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _leftIcon,
-            Flexible(
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: GCTextStyle.subtitle2.semiBold.copyWith(
-                  color: !isLight ? WColors.white : WColors.primary,
-                  overflow: overflow ?? TextOverflow.ellipsis,
+    return Container(
+      decoration: BoxDecoration(color: _color, borderRadius: WRadius.size6),
+      child: InkWell(
+        borderRadius: WRadius.size6,
+        onTap: isEnable ? onTap : null,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          height: height,
+          child: Row(
+            mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _leftIcon,
+              Flexible(
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: WTextStyle.subtitle2.semiBold.copyWith(
+                    color: !isLight ? WColors.white : WColors.primary,
+                    overflow: overflow ?? TextOverflow.ellipsis,
+                  ),
                 ),
               ),
-            ),
-            _rightIcon
-          ],
+              _rightIcon
+            ],
+          ),
         ),
       ),
     );

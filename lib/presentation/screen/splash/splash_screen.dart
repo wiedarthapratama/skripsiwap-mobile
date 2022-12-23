@@ -14,8 +14,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 5)).then(
-        (value) => NavigationService().router.replace(const LoginRoute()));
+    Future.delayed(const Duration(seconds: 5))
+        .then((value) => NavigationService().router.replace(const HomeRoute()));
     super.initState();
   }
 
