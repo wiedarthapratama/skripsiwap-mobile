@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skripsi_wap/common/enum/enum.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
-import 'package:skripsi_wap/config/assets.gen.dart';
-import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
@@ -41,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               WSpacing.vertical.size16,
               WPrimaryButton(
                 title: 'Login',
-                onTap: () => NavigationService().router.push(HomeRoute()),
+                onTap: () => NavigationService().router.push(const HomeRoute()),
                 fullWidth: false,
               ),
               WSpacing.vertical.size6,

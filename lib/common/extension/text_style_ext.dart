@@ -8,6 +8,7 @@ extension TextStyleExt on TextStyle {
   TextStyle get multiLine => copyWith(height: 1.35);
 
   TextStyle get secondary => copyWith(color: WColors.secondary);
+  TextStyle get accient => copyWith(color: WColors.accient);
   TextStyle get primary => copyWith(color: WColors.primary);
   TextStyle get white => copyWith(color: WColors.white);
   TextStyle get warning => copyWith(color: WColors.warning);

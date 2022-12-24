@@ -8,6 +8,7 @@
     <color name="orange">#FF512E</color>
     <color name="blue" type="material">#2196F3</color>
     <color name="secondary">#9B9B9B</color>
+    <color name="accient">#0079FF</color>
     <color name="border">#E0E0E0</color>
     <color name="grey">#E5E5E5</color>
     <color name="bgGrey">#f5f5f5</color>

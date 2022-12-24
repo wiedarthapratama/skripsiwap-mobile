@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:skripsi_wap/presentation/screen/auth/login/login_screen.dart';
 import 'package:skripsi_wap/presentation/screen/auth/register/register_screen.dart';
 import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
+import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
+import 'package:skripsi_wap/presentation/screen/payment/payment_screen.dart';
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
 
 @CustomAutoRouter(
@@ -26,6 +28,14 @@ import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
       AutoRoute(
         path: HomeScreen.name,
         page: HomeScreen,
+      ),
+      AutoRoute(
+        path: PaymentScreen.name,
+        page: PaymentScreen,
+      ),
+      AutoRoute(
+        path: PaymentDetailScreen.name,
+        page: PaymentDetailScreen,
       ),
     ])
 class $AppRouter {}
