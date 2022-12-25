@@ -17,31 +17,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int current = 0;
-  final List<MapEntry<String, MapEntry<Icon, Widget>>> menus = const [
-    MapEntry(
-        'Cari',
-        MapEntry<Icon, Widget>(
-            Icon(
-              Icons.search,
-              color: WColors.primary,
-            ),
-            SearchPage())),
-    MapEntry(
-        'Kost Saya',
-        MapEntry<Icon, Widget>(
-            Icon(
-              Icons.home,
-              color: WColors.primary,
-            ),
-            MyFlatPage())),
-    MapEntry(
-        'Profil',
-        MapEntry<Icon, Widget>(
-            Icon(
-              Icons.person,
-              color: WColors.primary,
-            ),
-            ProfilePage())),
+  final List<MapEntry<String, MapEntry<IconData, Widget>>> menus = const [
+    MapEntry('Cari', MapEntry<IconData, Widget>(Icons.search, SearchPage())),
+    MapEntry('Kost Saya', MapEntry<IconData, Widget>(Icons.home, MyFlatPage())),
+    MapEntry('Profil', MapEntry<IconData, Widget>(Icons.person, ProfilePage())),
   ];
   @override
   Widget build(BuildContext context) {
@@ -66,17 +45,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         label: menu.key,
                         icon: Container(
                           margin: const EdgeInsets.only(bottom: 4),
-                          child: menu.value.key,
+                          child: Icon(
+                            menu.value.key,
+                            color: WColors.primary,
+                          ),
                         ),
                         activeIcon: Container(
                           margin: const EdgeInsets.only(bottom: 4),
-                          child: menu.value.key,
+                          child: Icon(
+                            menu.value.key,
+                            color: WColors.accient,
+                          ),
                         ),
                       ))
                   .toList(),
               backgroundColor: WColors.white,
               unselectedItemColor: WColors.secondary,
-              selectedItemColor: WColors.primary,
+              selectedItemColor: WColors.accient,
               showUnselectedLabels: true,
               selectedLabelStyle: WTextStyle.overLine.semiBold,
               unselectedLabelStyle: WTextStyle.overLine.semiBold,

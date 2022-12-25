@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               WSpacing.vertical.size16,
               WPrimaryButton(
                 title: 'Daftar',
-                onTap: () => NavigationService().router.push(HomeRoute()),
+                onTap: () => NavigationService().router.push(const HomeRoute()),
                 fullWidth: false,
               ),
               WSpacing.vertical.size6,
@@ -61,7 +61,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: WTextStyle.subtitle2,
                   ),
                   GestureDetector(
-                    onTap: () => NavigationService().router.push(LoginRoute()),
+                    onTap: () =>
+                        NavigationService().router.push(const LoginRoute()),
                     child: Text(
                       ' Login',
                       style: WTextStyle.subtitle2.semiBold,

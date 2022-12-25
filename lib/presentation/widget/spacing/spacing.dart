@@ -8,9 +8,17 @@ class WSpacing extends SizedBox {
       : super(height: height, width: width);
 
   static WSpacingDirection get vertical => WSpacingDirection.vertical;
+  static WSpacingDirection get horizontal => WSpacingDirection.horizontal;
 }
 
 extension WSpacingDirectionExt on WSpacingDirection {
+  WSpacing get size4 => this == WSpacingDirection.vertical
+      ? WSpacing(
+          height: 4.h,
+        )
+      : WSpacing(
+          width: 4.w,
+        );
   WSpacing get size6 => this == WSpacingDirection.vertical
       ? WSpacing(
           height: 6.h,

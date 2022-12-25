@@ -1,6 +1,6 @@
 part of 'modal.dart';
 
-/* class WBottomSheet extends StatelessWidget {
+class WBottomSheet extends StatelessWidget {
   const WBottomSheet(
       {Key? key,
       required this.child,
@@ -38,9 +38,9 @@ part of 'modal.dart';
                     borderRadius: BorderRadius.circular(4)),
               ),
             ),
-            const WSpacing.vertical,
+            WSpacing.vertical.size24,
             Flexible(child: child),
-            if (footer != null) ...[const GCSpacingPrimary(), footer!],
+            if (footer != null) ...[WSpacing.vertical.size16, footer!],
           ],
         ),
       ),
@@ -57,7 +57,7 @@ class WBottomSheetFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GCButtonSection(
+    return WButtonSection(
         useShadow: false, paddingH: paddingH ?? 0, child: child);
   }
-} */
+}

@@ -17,6 +17,7 @@ class WPrimaryTextField extends StatelessWidget {
       this.onChanged,
       this.maxLength,
       this.suffix,
+      this.onTap,
       this.onTapSuffix});
 
   final String? label;
@@ -38,46 +39,51 @@ class WPrimaryTextField extends StatelessWidget {
   final int? maxLength;
   final Widget? suffix;
   final VoidCallback? onTapSuffix;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      enabled: enable,
-      obscureText: textFieldType == WTextFieldType.defaultType
-          ? isSecure
-          : textFieldType.isSecure,
-      controller: controller,
-      keyboardType: textFieldType == WTextFieldType.defaultType
-          ? inputType
-          : textFieldType.keyboardType,
-      inputFormatters: textFieldType == WTextFieldType.defaultType
-          ? inputFormats
-          : textFieldType.inputFormatter,
-      autocorrect: false,
-      focusNode: focusNode,
-      maxLines: maxLines,
-      minLines: minLines,
-      maxLength: maxLength,
-      onChanged: onChanged,
-      style: WTextStyle.subtitle2,
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        isDense: true,
-        border: const OutlineInputBorder(),
-        labelText: label,
-        hintText: hint,
-        hintStyle: WTextStyle.caption1.secondary,
-        labelStyle: WTextStyle.caption1,
-        suffixIcon: suffix == null
-            ? null
-            : GestureDetector(
-                onTap: onTapSuffix,
-                child: Container(
-                    padding: const EdgeInsets.only(right: 12), child: suffix),
-              ),
-        suffixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+    return GestureDetector(
+      onTap: onTap,
+      child: TextField(
+        enabled: enable,
+        obscureText: textFieldType == WTextFieldType.defaultType
+            ? isSecure
+            : textFieldType.isSecure,
+        controller: controller,
+        keyboardType: textFieldType == WTextFieldType.defaultType
+            ? inputType
+            : textFieldType.keyboardType,
+        inputFormatters: textFieldType == WTextFieldType.defaultType
+            ? inputFormats
+            : textFieldType.inputFormatter,
+        autocorrect: false,
+        focusNode: focusNode,
+        maxLines: maxLines,
+        minLines: minLines,
+        maxLength: maxLength,
+        onChanged: onChanged,
+        style: WTextStyle.subtitle2,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          isDense: true,
+          border: const OutlineInputBorder(),
+          labelText: label,
+          hintText: hint,
+          hintStyle: WTextStyle.caption1.secondary,
+          labelStyle: WTextStyle.caption1,
+          suffixIcon: suffix == null
+              ? null
+              : GestureDetector(
+                  onTap: onTapSuffix,
+                  child: Container(
+                      padding: const EdgeInsets.only(right: 12), child: suffix),
+                ),
+          suffixIconConstraints:
+              const BoxConstraints(minWidth: 0, minHeight: 0),
+        ),
       ),
     );
   }
