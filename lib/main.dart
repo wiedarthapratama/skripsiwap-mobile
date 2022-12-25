@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
+import 'package:skripsi_wap/service/firebase_service.dart';
 import 'package:skripsi_wap/service/navigation_service.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -30,7 +31,7 @@ void main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
-  // await FirebaseService.instance.init();
+  await FirebaseService.instance.init();
   Injection.init();
 
   runApp(const MyApp());
@@ -71,7 +72,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    // FirebaseService.instance.initNotification();
+    FirebaseService.instance.initNotification();
     _checkConnection();
     // _initFirebase();
     // _initUnilink();

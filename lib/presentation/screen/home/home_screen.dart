@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
@@ -5,6 +7,7 @@ import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/presentation/screen/home/my_flat/my_flat_page.dart';
 import 'package:skripsi_wap/presentation/screen/home/profile/profile_page.dart';
 import 'package:skripsi_wap/presentation/screen/home/search/search_page.dart';
+import 'package:skripsi_wap/service/firebase_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,6 +25,20 @@ class _HomeScreenState extends State<HomeScreen> {
     MapEntry('Kost Saya', MapEntry<IconData, Widget>(Icons.home, MyFlatPage())),
     MapEntry('Profil', MapEntry<IconData, Widget>(Icons.person, ProfilePage())),
   ];
+
+  @override
+  void initState() {
+    FirebaseService.instance.token.then((value) {
+      log('token: $value');
+    });
+
+    FirebaseService.instance.installationId.then((value) {
+      log('installId: $value');
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
