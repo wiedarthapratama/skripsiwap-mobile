@@ -25,11 +25,15 @@ class _MyFlatPageState extends State<MyFlatPage> {
         title: 'Aplikasi',
         elevation: .2,
         actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 12),
-            child: const Icon(
-              Icons.notifications,
-              size: 28,
+          InkWell(
+            onTap: () =>
+                NavigationService().router.push(const NotifikasiRoute()),
+            child: Container(
+              margin: const EdgeInsets.only(right: 12),
+              child: const Icon(
+                Icons.notifications,
+                size: 28,
+              ),
             ),
           )
         ],
@@ -83,7 +87,7 @@ class _MyFlatPageState extends State<MyFlatPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Foto',
+                    'Pembayaran',
                     style: WTextStyle.headline3.bold,
                   ),
                   WSecondaryButton(
@@ -156,7 +160,8 @@ class _MyFlatPageState extends State<MyFlatPage> {
                   ),
                   WSecondaryButton(
                     title: 'Ajukan Keluhan',
-                    onTap: () {},
+                    onTap: () =>
+                        NavigationService().router.push(const PengaduanRoute()),
                     fullWidth: false,
                   )
                 ],
