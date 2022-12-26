@@ -2,9 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:skripsi_wap/presentation/screen/auth/login/login_screen.dart';
 import 'package:skripsi_wap/presentation/screen/auth/register/register_screen.dart';
 import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
+import 'package:skripsi_wap/presentation/screen/notifikasi/notifikasi_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_detail_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart';
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
+import 'package:skripsi_wap/presentation/screen/ubah_password/ubah_password_screen.dart';
+import 'package:skripsi_wap/presentation/screen/ubah_profile/ubah_profile_screen.dart';
 
 @CustomAutoRouter(
     preferRelativeImports: false,
@@ -36,6 +41,26 @@ import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
       AutoRoute(
         path: PaymentDetailScreen.name,
         page: PaymentDetailScreen,
+      ),
+      AutoRoute(
+        path: PengaduanScreen.name,
+        page: PengaduanScreen,
+      ),
+      AutoRoute(
+        path: PengaduanDetailScreen.name,
+        page: PengaduanDetailScreen,
+      ),
+      AutoRoute(
+        path: UbahProfileScreen.name,
+        page: UbahProfileScreen,
+      ),
+      AutoRoute(
+        path: UbahPasswordScreen.name,
+        page: UbahPasswordScreen,
+      ),
+      AutoRoute(
+        path: NotifikasiScreen.name,
+        page: NotifikasiScreen,
       ),
     ])
 class $AppRouter {}

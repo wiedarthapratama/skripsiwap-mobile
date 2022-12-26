@@ -3,10 +3,12 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
+import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/image/image.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/presentation/widget/textfield/textfield.dart';
+import 'package:skripsi_wap/service/navigation_service.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -24,11 +26,15 @@ class _SearchPageState extends State<SearchPage> {
         title: 'Aplikasi',
         elevation: .2,
         actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 12),
-            child: const Icon(
-              Icons.notifications,
-              size: 28,
+          InkWell(
+            onTap: () =>
+                NavigationService().router.push(const NotifikasiRoute()),
+            child: Container(
+              margin: const EdgeInsets.only(right: 12),
+              child: const Icon(
+                Icons.notifications,
+                size: 28,
+              ),
             ),
           )
         ],
