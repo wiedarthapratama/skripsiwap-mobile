@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:skripsi_wap/common/enum/enum.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
+import 'package:skripsi_wap/config/assets.gen.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
@@ -9,8 +11,9 @@ import 'package:skripsi_wap/service/navigation_service.dart';
 
 part 'bottom_sheet_modal.dart';
 part 'primary_modal.dart';
+part 'snackbar_alert_modal.dart';
 
-class GCModal {
+class WModal {
   static Future<dynamic>? show(BuildContext? context,
       {required String title,
       required String message,

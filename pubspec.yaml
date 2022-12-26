@@ -29,6 +29,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   google_fonts: ^3.0.1
+  hive_flutter: ^1.1.0
   http: ^0.13.5
   image_picker: ^0.8.6
   intl: ^0.18.0

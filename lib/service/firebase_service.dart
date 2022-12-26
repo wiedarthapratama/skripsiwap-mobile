@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_installations/firebase_installations.dart';
@@ -34,6 +35,7 @@ class FirebaseService {
 
     if (remoteMessage != null) {
       log('message: $remoteMessage');
+
       selectNotification(
         json.encode(remoteMessage.data
           ..removeWhere((key, value) => key == 'android_channel_id')),
@@ -41,7 +43,9 @@ class FirebaseService {
     }
 
     ///! Foreground Handler
-    FirebaseMessaging.onMessage.listen((message) async {});
+    FirebaseMessaging.onMessage.listen((message) async {
+      _handleNotification(message);
+    });
 
     ///! Background Handler only
     FirebaseMessaging.onMessageOpenedApp.listen((message) => selectNotification(
@@ -51,6 +55,64 @@ class FirebaseService {
 
     ///! Background or Terminated Handler
     FirebaseMessaging.onBackgroundMessage(_onBackgroundMessage);
+  }
+
+  void _handleNotification(RemoteMessage message) async {
+    if (Platform.isAndroid) {
+      RemoteNotification? notification = message.notification;
+      const AndroidInitializationSettings initializationSettingsAndroid =
+          AndroidInitializationSettings('@mipmap/ic_launcher');
+      DarwinInitializationSettings initializationSettingsIos =
+          DarwinInitializationSettings(
+              requestSoundPermission: false,
+              requestBadgePermission: false,
+              requestAlertPermission: false,
+              onDidReceiveLocalNotification: (id, title, body, payload) =>
+                  selectNotification(
+                    json.encode((message.data
+                      ..removeWhere(
+                          (key, value) => key == 'android_channel_id'))),
+                  ));
+      InitializationSettings initializationSettings = InitializationSettings(
+          android: initializationSettingsAndroid,
+          iOS: initializationSettingsIos);
+      await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
+          onDidReceiveNotificationResponse: (response) =>
+              selectNotification(response.payload),
+          onDidReceiveBackgroundNotificationResponse:
+              notificationTapBackground);
+
+      if ((notification?.title ?? '').isEmpty ||
+          notification?.title == null ||
+          (notification?.body ?? '').isEmpty ||
+          notification?.body == null) {
+        return;
+      }
+
+      if (notification?.title != null ||
+          (notification?.title ?? '').isNotEmpty) {
+        await _flutterLocalNotificationsPlugin.show(
+            message.hashCode,
+            notification?.title,
+            notification?.body,
+            NotificationDetails(
+                android: AndroidNotificationDetails(
+                    'com.example.skripsi_wap', 'Skripsi Wap',
+                    channelDescription: 'Skripsi Wap',
+                    playSound: true,
+                    importance: Importance.max,
+                    priority: Priority.high,
+                    enableVibration: true,
+                    styleInformation:
+                        BigTextStyleInformation(notification?.body ?? '')),
+                iOS: const DarwinNotificationDetails(
+                    presentAlert: true,
+                    presentBadge: true,
+                    presentSound: true)),
+            payload: json.encode((message.data
+              ..removeWhere((key, value) => key == 'android_channel_id'))));
+      }
+    }
   }
 
   Future<void> requestPermission() async {

@@ -48,7 +48,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               label: 'Dari Bank',
               enable: false,
               onTap: () {
-                GCModal.builder(context, child: const SelectBankModal());
+                WModal.builder(context, child: const SelectBankModal());
               },
             ),
             WSpacing.vertical.size8,
