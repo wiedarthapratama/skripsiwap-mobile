@@ -7,9 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:skripsi_wap/config/assets.gen.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
+import 'package:skripsi_wap/presentation/viewmodel/master/master_viewmodel.dart';
+import 'package:skripsi_wap/presentation/viewmodel/user/user_viewmodel.dart';
+import 'package:skripsi_wap/presentation/widget/button/button.dart';
+import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
+import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/service/firebase_service.dart';
 import 'package:skripsi_wap/service/navigation_service.dart';
 
@@ -56,7 +63,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       await Future.delayed(const Duration(seconds: 1));
       try {
         final connectivityResult = await (Connectivity().checkConnectivity());
-        final serverLookUp = await InternetAddress.lookup('game-consign.com');
+        final serverLookUp =
+            await InternetAddress.lookup('dev.myfashiongrosir.id');
         if ((serverLookUp.isNotEmpty &&
                 serverLookUp[0].rawAddress.isNotEmpty) &&
             connectivityResult != ConnectivityResult.none) {
@@ -90,106 +98,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.detached) {
       subscription?.cancel();
-      /* subscriptionGlobalConfig?.cancel();
-      subscriptionUnilink?.cancel();
-      subscriptionJailbreak?.cancel(); */
-      // LocalStorageService.dispose();
     }
   }
 
-  /* Future<void> _initUnilink() async {
-    subscriptionUnilink = uriLinkStream.listen((uri) async {
-      NavigationService().deepLinkRoute(uri);
-    });
-  }
-
-  Future<void> _checkJbOrRoot() async {
-    subscriptionJailbreak = _jailbreakState().listen((isRoot) {
-      // await _initUnilink();
-
-      if (isRoot && _appRouter.current.name != SplashRoute.name) {
-        GCModal.show(
-          NavigationService().currentContext,
-          title: 'Maaf',
-          message: 'Aplikasi ini tidak bisa diakses oleh ${Platform.isAndroid ? 'rooted' : 'jail break'} device',
-          name: 'jailbreak',
-          enableDrag: false,
-          isDismissible: false,
-          canDuplicate: false,
-          alignment: CrossAxisAlignment.center,
-          image: GCAsset.image.maintenance.image(
-            width: 200.w,
-            fit: BoxFit.fitWidth,
-          ),
-          button: PrimaryButton(
-            title: 'Tutup',
-            onTap: () {
-              exit(0);
-            },
-          ),
-        );
-        return;
-      }
-    });
-  }
-
-  void _checkRemoteConfig() async {
-    try {
-      subscriptionGlobalConfig = _globalConfigState().listen((globalConfig) async {
-        if (globalConfig == null) return;
-
-        final packageInfo = await PackageInfo.fromPlatform();
-        final int currentVersion = int.tryParse(packageInfo.buildNumber) ?? 0;
-        final int newVersion = globalConfig.buildNumber;
-        if (currentVersion < newVersion) {
-          GCModal.show(
-            NavigationService().navigationKey.currentContext,
-            title: 'Hai Pengguna Game Consign',
-            message: 'Silahkan update aplikasi kamu ke versi terbaru :)',
-            name: globalConfig.updateMode,
-            enableDrag: false,
-            isDismissible: false,
-            alignment: CrossAxisAlignment.center,
-            canDuplicate: false,
-            image: GCAsset.image.maintenance.image(
-              width: MediaQuery.of(NavigationService().navigationKey.currentContext!).size.width * 200 / 360,
-              fit: BoxFit.fitWidth,
-            ),
-            button: PrimaryButton(
-              title: 'Update',
-              onTap: () {
-                reviewApp();
-              },
-            ),
-          );
-          return;
-        }
-        globalConfig.removeModalUpdateMode();
-
-        if (globalConfig.maintenance) {
-          GCModal.show(NavigationService().navigationKey.currentContext,
-              title: 'Hai Pengguna Game Consign',
-              message: 'Maaf saat ini Game Consign sedang ada maintenance. Mohon Tunggu ya',
-              name: globalConfig.maintenanceMode,
-              enableDrag: false,
-              isDismissible: false,
-              isScrollControlled: true,
-              alignment: CrossAxisAlignment.center,
-              image: GCAsset.image.noInternet.image(
-                width: MediaQuery.of(NavigationService().navigationKey.currentContext!).size.width * 200 / 360,
-                fit: BoxFit.fitWidth,
-              ),
-              canDuplicate: false,
-              onSubmit: () => exit(0));
-          return;
-        }
-        globalConfig.removeModalMaintenanceMode();
-      });
-    } catch (e, stack) {
-      debugLog('message', error: e, stackTrace: stack);
-    }
-  }
- */
   void _checkConnection() {
     subscription = customConnectionState().listen((val) async {
       if (val) {
@@ -203,13 +114,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   onNoInternet() async {
     if (!isNoInternet) {
       setState(() => isNoInternet = true);
-      /* GCModal.builder(NavigationService().navigationKey.currentContext,
+      WModal.builder(NavigationService().navigationKey.currentContext,
           isScrollControlled: true,
           isDismissible: false,
           enableDrag: false,
-          child: GCBottomSheet(
-            footer: GCBottomSheetFooter(
-                child: PrimaryButton(title: 'Coba lagi', onTap: onRetry)),
+          child: WBottomSheet(
+            footer: WBottomSheetFooter(
+                child: WPrimaryButton(title: 'Coba lagi', onTap: onRetry)),
             child: WillPopScope(
               onWillPop: () {
                 return Future.value(false);
@@ -219,7 +130,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(
-                    child: GCAsset.image.noInternet.image(
+                    child: WAssets.image.noInternet.image(
                       width: MediaQuery.of(NavigationService()
                                   .navigationKey
                                   .currentContext!)
@@ -230,7 +141,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  const GCSpacingModal(),
+                  WSpacing.vertical.size32,
                   const Text(
                     'Yah, internetnya mati',
                     style: TextStyle(
@@ -252,7 +163,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 ],
               ),
             ),
-          )); */
+          ));
     }
   }
 
@@ -273,126 +184,42 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MasterViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModel())
+      ],
+      child: GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-          FocusManager.instance.primaryFocus?.unfocus();
-        }
-      },
-      child: MaterialApp.router(
-        title: 'Game Consign',
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        routerDelegate: AutoRouterDelegate(
-          _appRouter,
-          navigatorObservers: () => [AutoRouterObserver()],
-        ),
-        debugShowCheckedModeBanner: false,
-        useInheritedMediaQuery: true,
-        theme: ThemeData(
-            primarySwatch: WColors.primary,
-            fontFamily: GoogleFonts.openSans().fontFamily,
-            scaffoldBackgroundColor: WColors.bgGrey),
-        builder: (ctx, child) {
-          ScreenUtil.init(ctx,
-              designSize: const Size(360, 720), minTextAdapt: true);
-
-          return child!;
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
         },
-        locale: const Locale('id'),
-      ),
-    );
-  }
-}
+        child: MaterialApp.router(
+          title: 'Game Consign',
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          routerDelegate: AutoRouterDelegate(
+            _appRouter,
+            navigatorObservers: () => [AutoRouterObserver()],
+          ),
+          debugShowCheckedModeBanner: false,
+          useInheritedMediaQuery: true,
+          theme: ThemeData(
+              primarySwatch: WColors.primary,
+              fontFamily: GoogleFonts.openSans().fontFamily,
+              scaffoldBackgroundColor: WColors.bgGrey),
+          builder: (ctx, child) {
+            ScreenUtil.init(ctx,
+                designSize: const Size(360, 720), minTextAdapt: true);
 
-/* import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
-import 'app/routes/app_pages.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-  if (!kIsWeb) {
-    await setupFlutterNotifications();
-  }
-  runApp(
-    GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
-  );
-}
-
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  await setupFlutterNotifications();
-  showFlutterNotification(message);
-  debugPrint('Handling a background message ${message.messageId}');
-}
-
-late AndroidNotificationChannel channel;
-
-bool isFlutterLocalNotificationsInitialized = false;
-
-Future<void> setupFlutterNotifications() async {
-  if (isFlutterLocalNotificationsInitialized) {
-    return;
-  }
-  channel = const AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    description:
-        'This channel is used for important notifications.', // description
-    importance: Importance.high,
-  );
-
-  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-  isFlutterLocalNotificationsInitialized = true;
-}
-
-void showFlutterNotification(RemoteMessage message) {
-  RemoteNotification? notification = message.notification;
-  AndroidNotification? android = message.notification?.android;
-  if (notification != null && android != null && !kIsWeb) {
-    flutterLocalNotificationsPlugin.show(
-      notification.hashCode,
-      notification.title,
-      notification.body,
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          channel.id,
-          channel.name,
-          channelDescription: channel.description,
-          icon: 'launch_background',
+            return child!;
+          },
+          locale: const Locale('id'),
         ),
       ),
     );
   }
 }
-
-/// Initialize the [FlutterLocalNotificationsPlugin] package.
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
- */
