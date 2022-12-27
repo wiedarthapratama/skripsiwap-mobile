@@ -7,12 +7,16 @@ import 'package:skripsi_wap/service/storage_service.dart';
 class RemoteDataSource {
   int get _timeout => 60000;
 
-  Map<String, String> get baseHeader => {'Accept': 'application/json'};
+  String get apikey => Env.apiKey;
+
+  Map<String, String> get baseHeader =>
+      {'Accept': 'application/json', 'apikey': apikey};
 
   Future<Options> get baseOption async => Options(headers: {
         'Accept': 'application/json',
         'Authorization':
-            'Bearer ${await StorageService.get<String>(StorageKeyEnum.accessToken)}'
+            'Bearer ${await StorageService.get<String>(StorageKeyEnum.accessToken)}',
+        'apikey': apikey
       });
 
   Dio get dio {

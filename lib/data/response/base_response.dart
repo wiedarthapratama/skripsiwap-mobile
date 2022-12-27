@@ -6,7 +6,7 @@ part 'base_response.g.dart';
 @freezed
 class BaseResponse with _$BaseResponse {
   factory BaseResponse(
-      {required bool success,
+      {required bool status,
       @Default('') String message,
       dynamic data}) = _BaseResponse;
 
@@ -15,5 +15,5 @@ class BaseResponse with _$BaseResponse {
 }
 
 extension BaseResponseExt on BaseResponse? {
-  bool get isSuccess => this != null && this!.success;
+  bool get isSuccess => this != null && this!.status;
 }

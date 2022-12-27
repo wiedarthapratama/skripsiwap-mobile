@@ -26,10 +26,6 @@ class WSecondaryButton extends StatelessWidget {
   final Color? color;
   final TextOverflow? overflow;
 
-  Color get _color =>
-      color ??
-      (isLight ? WColors.white : (isEnable ? WColors.primary : WColors.grey70));
-
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
