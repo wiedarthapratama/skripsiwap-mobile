@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skripsi_wap/common/enum/enum.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
@@ -6,6 +7,7 @@ import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/service/navigation_service.dart';
+import 'package:skripsi_wap/service/storage_service.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -128,7 +130,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       Container(
                         margin: const EdgeInsets.only(top: 12),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () async {
+                            await StorageService.delete(
+                                StorageKeyEnum.accessToken);
+                            NavigationService().router.push(const LoginRoute());
+                          },
                           child: Container(
                             width: double.infinity,
                             padding: const EdgeInsets.all(12),
