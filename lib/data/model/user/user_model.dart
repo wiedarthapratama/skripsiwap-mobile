@@ -7,6 +7,7 @@ part 'user_model.g.dart';
 class UserModel with _$UserModel {
   factory UserModel(
       {required int id,
+      required String name,
       required String email,
       required String nohp,
       @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,

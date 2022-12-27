@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:skripsi_wap/common/enum/enum.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/domain/repository/auth/auth_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
+import 'package:skripsi_wap/presentation/viewmodel/master/master_viewmodel.dart';
 import 'package:skripsi_wap/service/storage_service.dart';
 import 'package:skripsi_wap/util/util.dart';
 
@@ -33,6 +35,7 @@ class LoginViewModel extends BaseViewModel {
     await StorageService.set<String>(
         StorageKeyEnum.accessToken, data!.token.accessToken);
     isLoading = false;
+    context?.read<MasterViewModel>().navigation = NavigationEnum.search;
     navigationService.popToRootAndReplaceWith(const HomeRoute());
   }
 }
