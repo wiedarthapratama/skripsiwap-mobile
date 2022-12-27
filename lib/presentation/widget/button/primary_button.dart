@@ -33,18 +33,23 @@ class WPrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        height: height,
-        alignment: Alignment.center,
-        decoration:
-            BoxDecoration(color: WColors.grey70, borderRadius: WRadius.size6),
-        child: SizedBox(
-            width: 18,
-            height: 18,
-            child: CircularProgressIndicator(
-              strokeWidth: strokeWidthLoading,
-            )),
+      return Row(
+        mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            height: height,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: WColors.grey70, borderRadius: WRadius.size6),
+            child: SizedBox(
+                width: 18,
+                height: 18,
+                child: CircularProgressIndicator(
+                  strokeWidth: strokeWidthLoading,
+                )),
+          ),
+        ],
       );
     }
 

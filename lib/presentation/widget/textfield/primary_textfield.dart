@@ -18,7 +18,8 @@ class WPrimaryTextField extends StatelessWidget {
       this.maxLength,
       this.suffix,
       this.onTap,
-      this.onTapSuffix});
+      this.onTapSuffix,
+      this.validator});
 
   final String? label;
   final String? hint;
@@ -40,12 +41,13 @@ class WPrimaryTextField extends StatelessWidget {
   final Widget? suffix;
   final VoidCallback? onTapSuffix;
   final VoidCallback? onTap;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: TextField(
+      child: TextFormField(
         enabled: enable,
         obscureText: textFieldType == WTextFieldType.defaultType
             ? isSecure
@@ -63,6 +65,7 @@ class WPrimaryTextField extends StatelessWidget {
         minLines: minLines,
         maxLength: maxLength,
         onChanged: onChanged,
+        validator: validator,
         style: WTextStyle.subtitle2,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(

@@ -18,9 +18,9 @@ class AuthModel with _$AuthModel {
 @freezed
 class AuthTokenModel with _$AuthTokenModel {
   factory AuthTokenModel({
-    required String accessToken,
-    required String tokenType,
-    required int expiresIn,
+    @JsonKey(name: 'access_token') required String accessToken,
+    @JsonKey(name: 'token_type') required String tokenType,
+    @JsonKey(name: 'expires_in') required int expiresIn,
   }) = _AuthTokenModel;
 
   factory AuthTokenModel.fromJson(Map<String, dynamic> data) =>
