@@ -85,31 +85,36 @@ class _SearchPageState extends State<SearchPage> {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         children: viewModel.dataRekomendasi
-                            .map((rekomendasi) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      WCacheImage(
-                                        url: rekomendasi.foto,
-                                        // height: 150,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      WSpacing.vertical.size8,
-                                      Text(
-                                        rekomendasi.nama,
-                                        style: WTextStyle.body2.semiBold,
-                                      ),
-                                      WSpacing.vertical.size4,
-                                      Text(
-                                        rekomendasi.alamat,
-                                        style: WTextStyle.subtitle2,
-                                      ),
-                                      WSpacing.vertical.size4,
-                                      Text(
-                                        rekomendasi.hargaPerBulan.idrFormat,
-                                        style: WTextStyle.caption1.accient,
-                                      )
-                                    ]))
+                            .map((rekomendasi) => InkWell(
+                                  onTap: () => NavigationService()
+                                      .router
+                                      .push(const DetailKostRoute()),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        WCacheImage(
+                                          url: rekomendasi.foto,
+                                          // height: 150,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        WSpacing.vertical.size8,
+                                        Text(
+                                          rekomendasi.nama,
+                                          style: WTextStyle.body2.semiBold,
+                                        ),
+                                        WSpacing.vertical.size4,
+                                        Text(
+                                          rekomendasi.alamat.toLowerCase(),
+                                          style: WTextStyle.subtitle2,
+                                        ),
+                                        WSpacing.vertical.size4,
+                                        Text(
+                                          rekomendasi.hargaPerBulan.idrFormat,
+                                          style: WTextStyle.caption1.accient,
+                                        )
+                                      ]),
+                                ))
                             .toList(),
                       )
                     ],

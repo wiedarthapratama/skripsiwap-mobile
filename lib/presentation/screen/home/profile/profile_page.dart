@@ -102,6 +102,36 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: InkWell(
                                 onTap: () => NavigationService()
                                     .router
+                                    .push(const DaftarPemilikRoute()),
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: WColors.primary)),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Daftar Pemilik Kost',
+                                        style: WTextStyle.subtitle1.bold,
+                                      ),
+                                      Text(
+                                        'Untuk mendaftar menjadi pemilik kost',
+                                        style: WTextStyle.subtitle2,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 12),
+                              child: InkWell(
+                                onTap: () => NavigationService()
+                                    .router
                                     .push(const UbahProfileRoute()),
                                 child: Container(
                                   width: double.infinity,

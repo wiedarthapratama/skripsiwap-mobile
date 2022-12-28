@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:skripsi_wap/presentation/screen/auth/login/login_screen.dart';
 import 'package:skripsi_wap/presentation/screen/auth/register/register_screen.dart';
+import 'package:skripsi_wap/presentation/screen/daftar_pemilik/daftar_pemilik_screen.dart';
 import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
 import 'package:skripsi_wap/presentation/screen/notifikasi/notifikasi_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
@@ -10,6 +11,8 @@ import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart'
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_password/ubah_password_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_profile/ubah_profile_screen.dart';
+import 'package:skripsi_wap/presentation/screen/detail_kost/detail_kost_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.dart';
 
 @CustomAutoRouter(
     preferRelativeImports: false,
@@ -61,6 +64,18 @@ import 'package:skripsi_wap/presentation/screen/ubah_profile/ubah_profile_screen
       AutoRoute(
         path: NotifikasiScreen.name,
         page: NotifikasiScreen,
+      ),
+      AutoRoute(
+        path: DetailKostScreen.name,
+        page: DetailKostScreen,
+      ),
+      AutoRoute(
+        path: PendaftaranScreen.name,
+        page: PendaftaranScreen,
+      ),
+      AutoRoute(
+        path: DaftarPemilikScreen.name,
+        page: DaftarPemilikScreen,
       ),
     ])
 class $AppRouter {}
