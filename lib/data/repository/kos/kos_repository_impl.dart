@@ -1,6 +1,6 @@
 import 'package:skripsi_wap/data/data_source/kos/remote_data_source.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
-import 'package:skripsi_wap/data/model/kos/kos_model.dart';
+import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:skripsi_wap/data/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
@@ -11,7 +11,7 @@ class KosRepositoryImpl implements KosRepository {
   KosRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<KosModel>>> getListKos() async {
+  Future<Either<Failure, List<KosHomeModel>>> getListKos() async {
     try {
       final response = await remoteDataSource.getListKos();
 

@@ -12,4 +12,5 @@ abstract class AuthRepository {
       required String phone,
       required String password,
       required String passwordConfirm});
+  Future<Either<Failure, AuthModel>> refresh();
 }

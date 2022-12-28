@@ -14,6 +14,7 @@ abstract class AuthRemoteDataSource {
       required String phone,
       required String password,
       required String passwordConfirm});
+  Future<AuthModel> refresh();
 }
 
 class AuthRemoteDataSourceImpl extends RemoteDataSource
@@ -59,6 +60,23 @@ class AuthRemoteDataSourceImpl extends RemoteDataSource
 
     try {
       return UserModel.fromJson(response.data['user']);
+    } catch (e) {
+      if (e is DioError) {
+        throw WException(e);
+      } else {
+        throw ServerException();
+      }
+    }
+  }
+
+  @override
+  Future<AuthModel> refresh() async {
+    final response = await dio.get(ApiConstant.refreshToken,
+        options: Options(headers: baseHeader));
+
+    try {
+      final result = BaseResponse.fromJson(response.data);
+      return AuthModel.fromJson(result.data);
     } catch (e) {
       if (e is DioError) {
         throw WException(e);
