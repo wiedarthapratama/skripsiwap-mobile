@@ -8,3 +8,4 @@ import 'package:skripsi_wap/config/colors.gen.dart';
 
 part 'primary_textfield.dart';
 part 'password_textfield.dart';
+part 'searchable_textfield.dart';

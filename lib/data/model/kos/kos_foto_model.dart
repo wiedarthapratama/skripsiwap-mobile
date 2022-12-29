@@ -7,7 +7,7 @@ part 'kos_foto_model.g.dart';
 class KosFotoModel with _$KosFotoModel {
   factory KosFotoModel(
       {required int id,
-      @JsonKey(name: 'id_kos_jenis') required int idKosJenis,
+      @JsonKey(name: 'id_kost_jenis') required int idKosJenis,
       @JsonKey(name: 'main_foto') required int mainFoto,
       required String foto}) = _KosFotoModel;
 
