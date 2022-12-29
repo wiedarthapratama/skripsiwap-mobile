@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:skripsi_wap/common/decoration/decoration.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/presentation/viewmodel/kos/detail_kos_viewmodel.dart';
@@ -51,6 +53,8 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                           url: viewModel.model.fotos
                               .firstWhere((element) => element.mainFoto == 1)
                               .foto,
+                          height: 350,
+                          width: 1.sw,
                           fit: BoxFit.cover,
                         ),
                         Row(
@@ -63,6 +67,18 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                             const Icon(Icons.map),
                           ],
                         ),
+                        if (viewModel.model.isRumah == 1)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                                color: WColors.success,
+                                borderRadius: WRadius.size6),
+                            child: Text(
+                              'Rumah',
+                              style: WTextStyle.caption1.semiBold.white,
+                            ),
+                          ),
                         WSpacing.vertical.size4,
                         Text(
                           viewModel.model.hargaPerBulan.idrFormat,
