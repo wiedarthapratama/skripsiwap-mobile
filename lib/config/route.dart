@@ -6,6 +6,9 @@ import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
 import 'package:skripsi_wap/presentation/screen/notifikasi/notifikasi_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_form_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/pemilik_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart';
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
@@ -76,6 +79,18 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
       AutoRoute(
         path: DaftarPemilikScreen.name,
         page: DaftarPemilikScreen,
+      ),
+      AutoRoute(
+        path: PemilikScreen.name,
+        page: PemilikScreen,
+      ),
+      AutoRoute(
+        path: KosScreen.name,
+        page: KosScreen,
+      ),
+      AutoRoute(
+        path: KosFormScreen.name,
+        page: KosFormScreen,
       ),
     ])
 class $AppRouter {}

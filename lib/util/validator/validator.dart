@@ -8,4 +8,6 @@ extension StrValidator on String {
 
     return contains(emojis);
   }
+
+  bool get validateUrl => (Uri.tryParse(this) ?? Uri()).isAbsolute;
 }

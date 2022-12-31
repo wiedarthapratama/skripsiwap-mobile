@@ -21,10 +21,11 @@ class KosModel with _$KosModel {
     required String alamat,
     double? lat,
     double? lng,
-    required ProvinceModel provinsi,
-    required CityModel kabupaten,
-    required SubdistrictModel kecamatan,
-    required VillageModel desa,
+    @JsonKey(name: 'link_maps') String? linkMaps,
+    ProvinceModel? provinsi,
+    CityModel? kabupaten,
+    SubdistrictModel? kecamatan,
+    VillageModel? desa,
   }) = _KosModel;
 
   factory KosModel.fromJson(Map<String, dynamic> data) =>

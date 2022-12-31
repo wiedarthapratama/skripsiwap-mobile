@@ -97,36 +97,67 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                             WSpacing.vertical.size8,
-                            Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              child: InkWell(
-                                onTap: () => NavigationService()
-                                    .router
-                                    .push(const DaftarPemilikRoute()),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: WColors.primary)),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        'Daftar Pemilik Kost',
-                                        style: WTextStyle.subtitle1.bold,
+                            viewModel.user?.isPemilik ?? false
+                                ? Container(
+                                    margin: const EdgeInsets.only(top: 12),
+                                    child: InkWell(
+                                      onTap: () => NavigationService()
+                                          .router
+                                          .push(const PemilikRoute()),
+                                      child: Container(
+                                        width: double.infinity,
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: WColors.primary)),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Kelola Kost',
+                                              style: WTextStyle.subtitle1.bold,
+                                            ),
+                                            Text(
+                                              'Kelola kost dengan mudah disini',
+                                              style: WTextStyle.subtitle2,
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                      Text(
-                                        'Untuk mendaftar menjadi pemilik kost',
-                                        style: WTextStyle.subtitle2,
-                                      )
-                                    ],
+                                    ),
+                                  )
+                                : Container(
+                                    margin: const EdgeInsets.only(top: 12),
+                                    child: InkWell(
+                                      onTap: () => NavigationService()
+                                          .router
+                                          .push(const DaftarPemilikRoute()),
+                                      child: Container(
+                                        width: double.infinity,
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: WColors.primary)),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Daftar Pemilik Kost',
+                                              style: WTextStyle.subtitle1.bold,
+                                            ),
+                                            Text(
+                                              'Untuk mendaftar menjadi pemilik kost',
+                                              style: WTextStyle.subtitle2,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
                             Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
