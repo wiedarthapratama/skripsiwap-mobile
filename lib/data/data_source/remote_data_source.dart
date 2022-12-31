@@ -26,6 +26,8 @@ class RemoteDataSource {
         connectTimeout: _timeout,
         sendTimeout: _timeout));
 
+    d.interceptors.add(RefreshTokenInterceptor(dio: d));
+
     if (Env.appDebug) {
       d.interceptors.add(WDebugInterceptor());
     }

@@ -86,9 +86,9 @@ class _SearchPageState extends State<SearchPage> {
                         crossAxisSpacing: 8,
                         children: viewModel.dataRekomendasi
                             .map((rekomendasi) => InkWell(
-                                  onTap: () => NavigationService()
-                                      .router
-                                      .push(const DetailKostRoute()),
+                                  onTap: () => NavigationService().router.push(
+                                      DetailKostRoute(
+                                          idKosTipe: rekomendasi.idKostTipe)),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

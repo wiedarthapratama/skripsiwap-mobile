@@ -48,4 +48,40 @@ class AuthRepositoryImpl implements AuthRepository {
       return const Left(BaseFailure('Terjadi Kesalahan', 500));
     }
   }
+
+  @override
+  Future<Either<Failure, AuthModel>> refresh() async {
+    try {
+      final response = await remoteDataSource.refresh();
+
+      return Right(response);
+    } on WException catch (e) {
+      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } catch (_) {
+      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> registerAsOwner(
+      {required int provinceId,
+      required int cityId,
+      required int subdistrictId,
+      required int villageId,
+      required String address}) async {
+    try {
+      final response = await remoteDataSource.registerAsOwner(
+          provinceId: provinceId,
+          cityId: cityId,
+          subdistrictId: subdistrictId,
+          villageId: villageId,
+          address: address);
+
+      return Right(response);
+    } on WException catch (e) {
+      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } catch (_) {
+      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+    }
+  }
 }

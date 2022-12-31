@@ -12,4 +12,11 @@ abstract class AuthRepository {
       required String phone,
       required String password,
       required String passwordConfirm});
+  Future<Either<Failure, AuthModel>> refresh();
+  Future<Either<Failure, bool>> registerAsOwner(
+      {required int provinceId,
+      required int cityId,
+      required int subdistrictId,
+      required int villageId,
+      required String address});
 }

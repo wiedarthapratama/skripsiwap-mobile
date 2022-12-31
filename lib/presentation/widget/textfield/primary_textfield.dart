@@ -77,6 +77,9 @@ class WPrimaryTextField extends StatelessWidget {
           hintText: hint,
           hintStyle: WTextStyle.caption1.secondary,
           labelStyle: WTextStyle.caption1,
+          errorStyle: TextStyle(
+            color: Theme.of(context).errorColor,
+          ),
           suffixIcon: suffix == null
               ? null
               : GestureDetector(

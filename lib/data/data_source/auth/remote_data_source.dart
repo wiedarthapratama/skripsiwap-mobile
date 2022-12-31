@@ -14,6 +14,13 @@ abstract class AuthRemoteDataSource {
       required String phone,
       required String password,
       required String passwordConfirm});
+  Future<AuthModel> refresh();
+  Future<bool> registerAsOwner(
+      {required int provinceId,
+      required int cityId,
+      required int subdistrictId,
+      required int villageId,
+      required String address});
 }
 
 class AuthRemoteDataSourceImpl extends RemoteDataSource
@@ -59,6 +66,52 @@ class AuthRemoteDataSourceImpl extends RemoteDataSource
 
     try {
       return UserModel.fromJson(response.data['user']);
+    } catch (e) {
+      if (e is DioError) {
+        throw WException(e);
+      } else {
+        throw ServerException();
+      }
+    }
+  }
+
+  @override
+  Future<AuthModel> refresh() async {
+    final response = await dio.get(ApiConstant.refreshToken,
+        options: Options(headers: baseHeader));
+
+    try {
+      final result = BaseResponse.fromJson(response.data);
+      return AuthModel.fromJson(result.data);
+    } catch (e) {
+      if (e is DioError) {
+        throw WException(e);
+      } else {
+        throw ServerException();
+      }
+    }
+  }
+
+  @override
+  Future<bool> registerAsOwner(
+      {required int provinceId,
+      required int cityId,
+      required int subdistrictId,
+      required int villageId,
+      required String address}) async {
+    final data = <String, dynamic>{
+      'id_provinsi': provinceId,
+      'id_kabupaten': cityId,
+      'id_kecamatan': subdistrictId,
+      'id_desa': villageId,
+      'alamat': address
+    };
+    final response = await dio.post(ApiConstant.pemilik,
+        data: data, options: await baseOption);
+
+    try {
+      final result = BaseResponse.fromJson(response.data);
+      return result.isSuccess;
     } catch (e) {
       if (e is DioError) {
         throw WException(e);
