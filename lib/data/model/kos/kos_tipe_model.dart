@@ -19,8 +19,8 @@ class KosTipeModel with _$KosTipeModel {
     @JsonKey(name: 'is_listrik') required int isListrik,
     required String luas,
     @JsonKey(name: 'nama_tipe') required String namaTipe,
-    @JsonKey(name: 'kost') required KosModel kos,
-    @JsonKey(name: 'foto') required List<KosFotoModel> fotos,
+    @JsonKey(name: 'kost') KosModel? kos,
+    @JsonKey(name: 'foto') @Default(<KosFotoModel>[]) List<KosFotoModel> fotos,
   }) = _KosTipeModel;
 
   factory KosTipeModel.fromJson(Map<String, dynamic> data) =>

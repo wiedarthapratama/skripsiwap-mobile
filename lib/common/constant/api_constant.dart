@@ -19,4 +19,5 @@ class ApiConstant {
   //! PEMILIK
   static String get pemilik => '/api/pemilik';
   static String get kos => 'api/kost';
+  static String get kosTipe => 'api/kost-tipe';
 }

@@ -30,4 +30,29 @@ abstract class KosRepository {
       required String address,
       String? urlGoogleMap});
   Future<Either<Failure, BaseResponse>> deleteKos({required int idKos});
+  Future<Either<Failure, BaseResponse>> saveKosTipe(
+      {required int idKos,
+      required String namaTipe,
+      required String jumlahKos,
+      required String harga,
+      required String jumlahRuang,
+      required String luas,
+      required bool perabot,
+      required bool rumah,
+      required bool kamarMandi,
+      required bool listrik});
+  Future<Either<Failure, KosTipeModel>> geDetailKosTipe({required int id});
+  Future<Either<Failure, BaseResponse>> updateKosTipe(
+      {required int idKosTipe,
+      required int idKos,
+      required String namaTipe,
+      required String jumlahKos,
+      required String harga,
+      required String jumlahRuang,
+      required String luas,
+      required bool perabot,
+      required bool rumah,
+      required bool kamarMandi,
+      required bool listrik});
+  Future<Either<Failure, BaseResponse>> deleteKosTipe({required int id});
 }
