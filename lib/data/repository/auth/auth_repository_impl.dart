@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/data/data_source/auth/remote_data_source.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
-import 'package:skripsi_wap/data/failure.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
 import 'package:skripsi_wap/domain/repository/auth/auth_repository.dart';
 
@@ -12,22 +13,22 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, AuthModel>> login(
+  Future<Either<WException, AuthModel>> login(
       {required String email, required String password}) async {
     try {
       final response =
           await remoteDataSource.login(email: email, password: password);
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 
   @override
-  Future<Either<Failure, UserModel>> register(
+  Future<Either<WException, UserModel>> register(
       {required String name,
       required String email,
       required String phone,
@@ -42,28 +43,28 @@ class AuthRepositoryImpl implements AuthRepository {
           passwordConfirm: passwordConfirm);
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 
   @override
-  Future<Either<Failure, AuthModel>> refresh() async {
+  Future<Either<WException, AuthModel>> refresh() async {
     try {
       final response = await remoteDataSource.refresh();
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 
   @override
-  Future<Either<Failure, bool>> registerAsOwner(
+  Future<Either<WException, bool>> registerAsOwner(
       {required int provinceId,
       required int cityId,
       required int subdistrictId,
@@ -78,10 +79,10 @@ class AuthRepositoryImpl implements AuthRepository {
           address: address);
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 }

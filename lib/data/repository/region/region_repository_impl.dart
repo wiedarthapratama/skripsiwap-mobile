@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/data/data_source/region/remote_data_source.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/region/village_model.dart';
 import 'package:skripsi_wap/data/model/region/subdistrict_model.dart';
 import 'package:skripsi_wap/data/model/region/province_model.dart';
 import 'package:skripsi_wap/data/model/region/city_model.dart';
-import 'package:skripsi_wap/data/failure.dart';
 import 'package:skripsi_wap/domain/repository/region/region_repository.dart';
 
 class RegionRepositoryImpl implements RegionRepository {
@@ -14,56 +15,56 @@ class RegionRepositoryImpl implements RegionRepository {
   RegionRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<ProvinceModel>>> getProvince() async {
+  Future<Either<WException, List<ProvinceModel>>> getProvince() async {
     try {
       final response = await remoteDataSource.getProvince();
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 
   @override
-  Future<Either<Failure, List<CityModel>>> getCity({required int id}) async {
+  Future<Either<WException, List<CityModel>>> getCity({required int id}) async {
     try {
       final response = await remoteDataSource.getCity(id: id);
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 
   @override
-  Future<Either<Failure, List<SubdistrictModel>>> getSubdistrict(
+  Future<Either<WException, List<SubdistrictModel>>> getSubdistrict(
       {required int id}) async {
     try {
       final response = await remoteDataSource.getSubdistrict(id: id);
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 
   @override
-  Future<Either<Failure, List<VillageModel>>> getVillage(
+  Future<Either<WException, List<VillageModel>>> getVillage(
       {required int id}) async {
     try {
       final response = await remoteDataSource.getVillage(id: id);
 
       return Right(response);
-    } on WException catch (e) {
-      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } on DioError catch (e) {
+      return Left(e.exception);
     } catch (_) {
-      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+      return const Left(WException.internalServerException());
     }
   }
 }

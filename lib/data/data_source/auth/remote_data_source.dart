@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/constant/constant.dart';
 import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
-import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
@@ -34,17 +33,8 @@ class AuthRemoteDataSourceImpl extends RemoteDataSource
     };
     final response = await dio.post(ApiConstant.login,
         data: data, options: Options(headers: baseHeader));
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return AuthModel.fromJson(result.data);
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return AuthModel.fromJson(result.data);
   }
 
   @override
@@ -64,32 +54,15 @@ class AuthRemoteDataSourceImpl extends RemoteDataSource
     final response = await dio.post(ApiConstant.register,
         data: data, options: Options(headers: baseHeader));
 
-    try {
-      return UserModel.fromJson(response.data['user']);
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    return UserModel.fromJson(response.data['user']);
   }
 
   @override
   Future<AuthModel> refresh() async {
     final response = await dio.get(ApiConstant.refreshToken,
         options: Options(headers: baseHeader));
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return AuthModel.fromJson(result.data);
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return AuthModel.fromJson(result.data);
   }
 
   @override
@@ -108,16 +81,7 @@ class AuthRemoteDataSourceImpl extends RemoteDataSource
     };
     final response = await dio.post(ApiConstant.pemilik,
         data: data, options: await baseOption);
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return result.isSuccess;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return result.isSuccess;
   }
 }

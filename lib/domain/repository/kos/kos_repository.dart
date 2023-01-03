@@ -1,16 +1,17 @@
 import 'package:dartz/dartz.dart';
-import 'package:skripsi_wap/data/failure.dart';
+import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRepository {
-  Future<Either<Failure, List<KosHomeModel>>> getListKos();
-  Future<Either<Failure, KosTipeModel>> getDetailKos({required int idKosTipe});
-  Future<Either<Failure, List<KosModel>>> getListKosOwner();
-  Future<Either<Failure, KosModel>> geDetailKosOwner({required int idKos});
-  Future<Either<Failure, BaseResponse>> saveKos(
+  Future<Either<WException, List<KosHomeModel>>> getListKos();
+  Future<Either<WException, KosTipeModel>> getDetailKos(
+      {required int idKosTipe});
+  Future<Either<WException, List<KosModel>>> getListKosOwner();
+  Future<Either<WException, KosModel>> geDetailKosOwner({required int idKos});
+  Future<Either<WException, BaseResponse>> saveKos(
       {required String title,
       required String description,
       required int provinceId,
@@ -19,7 +20,7 @@ abstract class KosRepository {
       required int villageId,
       required String address,
       String? urlGoogleMap});
-  Future<Either<Failure, BaseResponse>> updateKos(
+  Future<Either<WException, BaseResponse>> updateKos(
       {required String idKos,
       required String title,
       required String description,
@@ -29,8 +30,8 @@ abstract class KosRepository {
       required int villageId,
       required String address,
       String? urlGoogleMap});
-  Future<Either<Failure, BaseResponse>> deleteKos({required int idKos});
-  Future<Either<Failure, BaseResponse>> saveKosTipe(
+  Future<Either<WException, BaseResponse>> deleteKos({required int idKos});
+  Future<Either<WException, BaseResponse>> saveKosTipe(
       {required int idKos,
       required String namaTipe,
       required String jumlahKos,
@@ -41,8 +42,8 @@ abstract class KosRepository {
       required bool rumah,
       required bool kamarMandi,
       required bool listrik});
-  Future<Either<Failure, KosTipeModel>> geDetailKosTipe({required int id});
-  Future<Either<Failure, BaseResponse>> updateKosTipe(
+  Future<Either<WException, KosTipeModel>> geDetailKosTipe({required int id});
+  Future<Either<WException, BaseResponse>> updateKosTipe(
       {required int idKosTipe,
       required int idKos,
       required String namaTipe,
@@ -54,5 +55,5 @@ abstract class KosRepository {
       required bool rumah,
       required bool kamarMandi,
       required bool listrik});
-  Future<Either<Failure, BaseResponse>> deleteKosTipe({required int id});
+  Future<Either<WException, BaseResponse>> deleteKosTipe({required int id});
 }

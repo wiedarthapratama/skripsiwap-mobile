@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/region/city_model.dart';
 import 'package:skripsi_wap/data/model/region/province_model.dart';
@@ -74,7 +75,7 @@ class KosFormViewModel extends BaseViewModel {
     if (response.isLeft()) {
       isLoading = false;
       navigationService.router.popForced();
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 
@@ -219,7 +220,7 @@ class KosFormViewModel extends BaseViewModel {
 
     if (response.isLeft() && data == null) {
       isLoadingCTA = false;
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 
@@ -255,7 +256,7 @@ class KosFormViewModel extends BaseViewModel {
 
     if (response.isLeft() && data == null) {
       isLoadingCTA = false;
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 

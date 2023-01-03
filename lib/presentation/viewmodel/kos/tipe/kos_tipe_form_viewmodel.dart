@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
-import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
-import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
-import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
-import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/util/util.dart';
 
 class KosTipeFormViewModel extends BaseViewModel {
@@ -73,7 +69,7 @@ class KosTipeFormViewModel extends BaseViewModel {
     if (response.isLeft()) {
       isLoading = false;
       navigationService.router.popForced();
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 
@@ -140,7 +136,7 @@ class KosTipeFormViewModel extends BaseViewModel {
 
     if (response.isLeft() && data == null) {
       isLoadingCTA = false;
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 
@@ -174,7 +170,7 @@ class KosTipeFormViewModel extends BaseViewModel {
 
     if (response.isLeft() && data == null) {
       isLoadingCTA = false;
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 

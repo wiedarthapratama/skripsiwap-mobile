@@ -32,8 +32,6 @@ class RemoteDataSource {
       d.interceptors.add(WDebugInterceptor());
     }
 
-    d.interceptors.add(WInterceptor());
-
     return d;
   }
 }

@@ -1,19 +1,19 @@
 import 'package:dartz/dartz.dart';
-import 'package:skripsi_wap/data/failure.dart';
+import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, AuthModel>> login(
+  Future<Either<WException, AuthModel>> login(
       {required String email, required String password});
-  Future<Either<Failure, UserModel>> register(
+  Future<Either<WException, UserModel>> register(
       {required String name,
       required String email,
       required String phone,
       required String password,
       required String passwordConfirm});
-  Future<Either<Failure, AuthModel>> refresh();
-  Future<Either<Failure, bool>> registerAsOwner(
+  Future<Either<WException, AuthModel>> refresh();
+  Future<Either<WException, bool>> registerAsOwner(
       {required int provinceId,
       required int cityId,
       required int subdistrictId,

@@ -23,7 +23,7 @@ class KosDetailViewModel extends BaseViewModel {
 
     if (response.isLeft()) {
       navigationService.router.popForced();
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 
@@ -74,7 +74,7 @@ class KosDetailViewModel extends BaseViewModel {
 
     if (response.isLeft()) {
       isLoading = false;
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 

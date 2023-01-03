@@ -1,45 +1,28 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:skripsi_wap/common/enum/enum.dart';
-import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ServerException implements Exception {}
+part 'exception.freezed.dart';
 
-class WException extends DioError {
-  final DioError dioError;
-  WException(this.dioError)
-      : super(
-          requestOptions: dioError.requestOptions,
-          error: dioError.error,
-          response: dioError.response,
-          type: dioError.type,
-        );
+@freezed
+class WException with _$WException {
+  @Implements<Exception>()
+  const factory WException.serverException(
+      {required String message, @Default(500) int code}) = _WServerException;
 
-  WErrorType get errorType {
-    var t = WErrorType.DEFAULT;
-    var statusCode = response?.statusCode ?? 500;
-    (response?.statusCode ?? 400) == 503
-        ? WErrorType.MAINTENANCE
-        : WErrorType.DEFAULT;
+  @Implements<Exception>()
+  const factory WException.maintenance(
+      {required String message, @Default(503) int code}) = _WMaintenance;
 
-    if (statusCode == 503) {
-      t = WErrorType.MAINTENANCE;
-    }
+  @Implements<Exception>()
+  const factory WException.unauthenticated(
+      {required String message, @Default(401) int code}) = _WUnauthenticated;
 
-    if (statusCode == 401) {
-      t = WErrorType.UNAUTHENTICATED;
-    }
+  @Implements<Exception>()
+  const factory WException.internalServerException(
+      {@Default('Terjadi Kesalahan') String message,
+      @Default(500) int code}) = _WInternalServerException;
 
-    return t;
-  }
-
-  @override
-  String get message => response?.data['message'] ?? 'Terjadi Kesalahan';
-
-  void showAlert(BuildContext? context) {
-    WModal.show(context,
-        title: 'Gagal',
-        message: response?.data['message'].toString() ?? 'Terjadi Kesalahan',
-        alignment: CrossAxisAlignment.center);
-  }
+  @Implements<Exception>()
+  const factory WException.badNetworkException(
+      {@Default('Koneksi bermasalah, silahkan coba lagi') String message,
+      @Default(500) int code}) = _WBadNetworkException;
 }
