@@ -61,7 +61,7 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              viewModel.model.kos.judul,
+                              viewModel.model.kos?.judul ?? '',
                               style: WTextStyle.headline3.semiBold,
                             ),
                             const Icon(Icons.map),
@@ -86,7 +86,7 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                         ),
                         WSpacing.vertical.size4,
                         Text(
-                          viewModel.model.kos.alamat,
+                          viewModel.model.kos?.alamat ?? '',
                           style: WTextStyle.subtitle2,
                         ),
                         WSpacing.vertical.size8,

@@ -7,6 +7,7 @@ import 'package:skripsi_wap/data/model/kos/kos_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
+import 'package:skripsi_wap/util/util.dart';
 
 class KosRepositoryImpl implements KosRepository {
   final KosRemoteDataSource remoteDataSource;
@@ -130,6 +131,101 @@ class KosRepositoryImpl implements KosRepository {
   Future<Either<Failure, BaseResponse>> deleteKos({required int idKos}) async {
     try {
       final response = await remoteDataSource.deleteKos(idKos: idKos);
+
+      return Right(response);
+    } on WException catch (e) {
+      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } catch (_) {
+      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BaseResponse>> saveKosTipe(
+      {required int idKos,
+      required String namaTipe,
+      required String jumlahKos,
+      required String harga,
+      required String jumlahRuang,
+      required String luas,
+      required bool perabot,
+      required bool rumah,
+      required bool kamarMandi,
+      required bool listrik}) async {
+    try {
+      final response = await remoteDataSource.saveKosTipe(
+          idKos: idKos,
+          namaTipe: namaTipe,
+          jumlahKos: jumlahKos,
+          harga: harga,
+          jumlahRuang: jumlahRuang,
+          luas: luas,
+          perabot: perabot,
+          rumah: rumah,
+          kamarMandi: kamarMandi,
+          listrik: listrik);
+
+      return Right(response);
+    } on WException catch (e) {
+      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } catch (_) {
+      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+    }
+  }
+
+  @override
+  Future<Either<Failure, KosTipeModel>> geDetailKosTipe(
+      {required int id}) async {
+    try {
+      final response = await remoteDataSource.geDetailKosTipe(id: id);
+
+      return Right(response);
+    } on WException catch (e) {
+      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } catch (_) {
+      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BaseResponse>> updateKosTipe(
+      {required int idKosTipe,
+      required int idKos,
+      required String namaTipe,
+      required String jumlahKos,
+      required String harga,
+      required String jumlahRuang,
+      required String luas,
+      required bool perabot,
+      required bool rumah,
+      required bool kamarMandi,
+      required bool listrik}) async {
+    try {
+      final response = await remoteDataSource.updateKosTipe(
+          idKosTipe: idKosTipe,
+          idKos: idKos,
+          namaTipe: namaTipe,
+          jumlahKos: jumlahKos,
+          harga: harga,
+          jumlahRuang: jumlahRuang,
+          luas: luas,
+          perabot: perabot,
+          rumah: rumah,
+          kamarMandi: kamarMandi,
+          listrik: listrik);
+
+      return Right(response);
+    } on WException catch (e) {
+      return Left(BaseFailure(e.message, e.response?.statusCode ?? 500));
+    } catch (_) {
+      return const Left(BaseFailure('Terjadi Kesalahan', 500));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BaseResponse>> deleteKosTipe({required int id}) async {
+    try {
+      final response = await remoteDataSource.deleteKosTipe(id: id);
 
       return Right(response);
     } on WException catch (e) {

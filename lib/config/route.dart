@@ -6,8 +6,11 @@ import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
 import 'package:skripsi_wap/presentation/screen/notifikasi/notifikasi_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_form_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/kos/tipe/kos_tipe_detail_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/kos/tipe/kos_tipe_form_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pemilik_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart';
@@ -91,6 +94,18 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
       AutoRoute(
         path: KosFormScreen.name,
         page: KosFormScreen,
+      ),
+      AutoRoute(
+        path: KosDetailScreen.name,
+        page: KosDetailScreen,
+      ),
+      AutoRoute(
+        path: KosTipeFormScreen.name,
+        page: KosTipeFormScreen,
+      ),
+      AutoRoute(
+        path: KosTipeDetailScreen.name,
+        page: KosTipeDetailScreen,
       ),
     ])
 class $AppRouter {}
