@@ -68,7 +68,7 @@ class KosFormViewModel extends BaseViewModel {
   void _loadData() async {
     isLoading = true;
 
-    final response = await repository.geDetailKosOwner(idKos: idKos!);
+    final response = await repository.getDetailKos(idKos: idKos!);
     final failure = response.fold((l) => l, (r) => null);
     final data = response.fold((l) => null, (r) => r);
 

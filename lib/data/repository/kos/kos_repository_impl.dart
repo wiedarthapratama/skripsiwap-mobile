@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/data/data_source/kos/remote_data_source.dart';
@@ -15,7 +17,20 @@ class KosRepositoryImpl implements KosRepository {
   KosRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<WException, List<KosHomeModel>>> getListKos() async {
+  Future<Either<WException, List<KosHomeModel>>> getRecommendation() async {
+    try {
+      final response = await remoteDataSource.getRecommendation();
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, List<KosModel>>> getListKos() async {
     try {
       final response = await remoteDataSource.getListKos();
 
@@ -28,11 +43,11 @@ class KosRepositoryImpl implements KosRepository {
   }
 
   @override
-  Future<Either<WException, KosTipeModel>> getDetailKos(
+  Future<Either<WException, KosTipeModel>> getPengontrakDetailKos(
       {required int idKosTipe}) async {
     try {
       final response =
-          await remoteDataSource.getDetailKos(idKosTipe: idKosTipe);
+          await remoteDataSource.getPengontrakDetailKos(idKosTipe: idKosTipe);
 
       return Right(response);
     } on DioError catch (e) {
@@ -43,23 +58,10 @@ class KosRepositoryImpl implements KosRepository {
   }
 
   @override
-  Future<Either<WException, List<KosModel>>> getListKosOwner() async {
-    try {
-      final response = await remoteDataSource.getListKosOwner();
-
-      return Right(response);
-    } on DioError catch (e) {
-      return Left(e.exception);
-    } catch (_) {
-      return const Left(WException.internalServerException());
-    }
-  }
-
-  @override
-  Future<Either<WException, KosModel>> geDetailKosOwner(
+  Future<Either<WException, KosModel>> getDetailKos(
       {required int idKos}) async {
     try {
-      final response = await remoteDataSource.geDetailKosOwner(idKos: idKos);
+      final response = await remoteDataSource.getDetailKos(idKos: idKos);
 
       return Right(response);
     } on DioError catch (e) {
@@ -175,10 +177,10 @@ class KosRepositoryImpl implements KosRepository {
   }
 
   @override
-  Future<Either<WException, KosTipeModel>> geDetailKosTipe(
+  Future<Either<WException, KosTipeModel>> getDetailKosTipe(
       {required int id}) async {
     try {
-      final response = await remoteDataSource.geDetailKosTipe(id: id);
+      final response = await remoteDataSource.getDetailKosTipe(id: id);
 
       return Right(response);
     } on DioError catch (e) {
@@ -228,6 +230,23 @@ class KosRepositoryImpl implements KosRepository {
       {required int id}) async {
     try {
       final response = await remoteDataSource.deleteKosTipe(id: id);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, BaseResponse>> saveFotoTipe(
+      {required int idKosTipe,
+      required bool mainFoto,
+      required File file}) async {
+    try {
+      final response = await remoteDataSource.saveFotoTipe(
+          idKosTipe: idKosTipe, mainFoto: mainFoto, file: file);
 
       return Right(response);
     } on DioError catch (e) {

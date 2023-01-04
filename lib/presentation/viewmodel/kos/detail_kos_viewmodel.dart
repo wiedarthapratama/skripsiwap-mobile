@@ -11,7 +11,7 @@ class DetailKosViewModel extends BaseViewModel {
   void init({required int idKosTipe}) async {
     isLoading = true;
 
-    final response = await repository.getDetailKos(idKosTipe: idKosTipe);
+    final response = await repository.getDetailKosTipe(id: idKosTipe);
     final failure = response.fold((l) => l, (r) => null);
     final data = response.fold((l) => null, (r) => r);
 

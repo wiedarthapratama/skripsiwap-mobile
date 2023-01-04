@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/constant/constant.dart';
 import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
@@ -6,10 +9,10 @@ import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRemoteDataSource {
-  Future<List<KosHomeModel>> getListKos();
-  Future<KosTipeModel> getDetailKos({required int idKosTipe});
-  Future<List<KosModel>> getListKosOwner();
-  Future<KosModel> geDetailKosOwner({required int idKos});
+  Future<List<KosHomeModel>> getRecommendation();
+  Future<List<KosModel>> getListKos();
+  Future<KosTipeModel> getPengontrakDetailKos({required int idKosTipe});
+  Future<KosModel> getDetailKos({required int idKos});
   Future<BaseResponse> saveKos(
       {required String title,
       required String description,
@@ -42,7 +45,7 @@ abstract class KosRemoteDataSource {
     required bool kamarMandi,
     required bool listrik,
   });
-  Future<KosTipeModel> geDetailKosTipe({required int id});
+  Future<KosTipeModel> getDetailKosTipe({required int id});
   Future<BaseResponse> updateKosTipe({
     required int idKosTipe,
     required int idKos,
@@ -57,12 +60,14 @@ abstract class KosRemoteDataSource {
     required bool listrik,
   });
   Future<BaseResponse> deleteKosTipe({required int id});
+  Future<BaseResponse> saveFotoTipe(
+      {required int idKosTipe, required bool mainFoto, required File file});
 }
 
 class KosRemoteDataSourceImpl extends RemoteDataSource
     implements KosRemoteDataSource {
   @override
-  Future<List<KosHomeModel>> getListKos() async {
+  Future<List<KosHomeModel>> getRecommendation() async {
     final response =
         await dio.post(ApiConstant.pengontrakHome, options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
@@ -73,7 +78,7 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
   }
 
   @override
-  Future<KosTipeModel> getDetailKos({required int idKosTipe}) async {
+  Future<KosTipeModel> getPengontrakDetailKos({required int idKosTipe}) async {
     final data = {'id_kost_tipe': idKosTipe};
 
     final response = await dio.post(ApiConstant.pengontrakKosDetail,
@@ -83,7 +88,7 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
   }
 
   @override
-  Future<List<KosModel>> getListKosOwner() async {
+  Future<List<KosModel>> getListKos() async {
     final response = await dio.get(ApiConstant.kos, options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
     return (result.data as List)
@@ -123,7 +128,7 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
   }
 
   @override
-  Future<KosModel> geDetailKosOwner({required int idKos}) async {
+  Future<KosModel> getDetailKos({required int idKos}) async {
     final response =
         await dio.get('${ApiConstant.kos}/$idKos', options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
@@ -203,7 +208,7 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
   }
 
   @override
-  Future<KosTipeModel> geDetailKosTipe({required int id}) async {
+  Future<KosTipeModel> getDetailKosTipe({required int id}) async {
     final response =
         await dio.get('${ApiConstant.kosTipe}/$id', options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
@@ -247,6 +252,24 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
   Future<BaseResponse> deleteKosTipe({required int id}) async {
     final response = await dio.delete('${ApiConstant.kosTipe}/$id',
         options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
+
+    return result;
+  }
+
+  @override
+  Future<BaseResponse> saveFotoTipe(
+      {required int idKosTipe,
+      required bool mainFoto,
+      required File file}) async {
+    final data = FormData.fromMap({
+      'id_kost_jenis': idKosTipe,
+      'main_foto': mainFoto ? 1 : 0,
+      'foto': MultipartFile.fromFileSync(file.path,
+          filename: file.path.split('/').last)
+    });
+    final response = await dio.post(ApiConstant.kosFoto,
+        data: data, options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
 
     return result;
