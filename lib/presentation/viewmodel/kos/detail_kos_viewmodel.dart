@@ -1,3 +1,4 @@
+import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
@@ -17,7 +18,7 @@ class DetailKosViewModel extends BaseViewModel {
     if (response.isLeft()) {
       isLoading = false;
       navigationService.router.popForced();
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 

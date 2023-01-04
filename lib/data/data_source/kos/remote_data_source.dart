@@ -1,12 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/constant/constant.dart';
 import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
-import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
-import 'package:skripsi_wap/util/util.dart';
 
 abstract class KosRemoteDataSource {
   Future<List<KosHomeModel>> getListKos();
@@ -68,20 +65,11 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
   Future<List<KosHomeModel>> getListKos() async {
     final response =
         await dio.post(ApiConstant.pengontrakHome, options: await baseOption);
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return (result.data as List)
-          .map((e) => KosHomeModel.fromJson(e))
-          .toList()
-          .cast<KosHomeModel>();
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return (result.data as List)
+        .map((e) => KosHomeModel.fromJson(e))
+        .toList()
+        .cast<KosHomeModel>();
   }
 
   @override
@@ -90,36 +78,18 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
 
     final response = await dio.post(ApiConstant.pengontrakKosDetail,
         data: data, options: await baseOption);
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return KosTipeModel.fromJson(result.data);
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return KosTipeModel.fromJson(result.data);
   }
 
   @override
   Future<List<KosModel>> getListKosOwner() async {
     final response = await dio.get(ApiConstant.kos, options: await baseOption);
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return (result.data as List)
-          .map((e) => KosModel.fromJson(e))
-          .toList()
-          .cast<KosModel>();
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return (result.data as List)
+        .map((e) => KosModel.fromJson(e))
+        .toList()
+        .cast<KosModel>();
   }
 
   @override
@@ -148,34 +118,16 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
 
     final response =
         await dio.post(ApiConstant.kos, data: data, options: await baseOption);
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return result;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return result;
   }
 
   @override
   Future<KosModel> geDetailKosOwner({required int idKos}) async {
     final response =
         await dio.get('${ApiConstant.kos}/$idKos', options: await baseOption);
-
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return KosModel.fromJson(result.data);
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return KosModel.fromJson(result.data);
   }
 
   @override
@@ -205,17 +157,9 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
 
     final response = await dio.post('${ApiConstant.kos}/$idKos',
         data: data, options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
 
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return result;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    return result;
   }
 
   @override
@@ -223,16 +167,8 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
     final response = await dio.delete('${ApiConstant.kos}/$idKos',
         options: await baseOption);
 
-    try {
-      final result = BaseResponse.fromJson(response.data);
-      return result;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    final result = BaseResponse.fromJson(response.data);
+    return result;
   }
 
   @override
@@ -247,48 +183,32 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
       required bool rumah,
       required bool kamarMandi,
       required bool listrik}) async {
-    try {
-      final data = <String, dynamic>{
-        'id_kost': idKos,
-        'jumlah_kontrakan': jumlahKos,
-        'harga_per_bulan': harga,
-        'jumlah_ruang': jumlahRuang,
-        'is_perabot': perabot ? 1 : 0,
-        'is_rumah': rumah ? 1 : 0,
-        'is_kamar_mandi_dalam': kamarMandi ? 1 : 0,
-        'is_listrik': listrik ? 1 : 0,
-        'luas': luas,
-        'nama_tipe': namaTipe,
-      };
-      final response = await dio.post(ApiConstant.kosTipe,
-          data: data, options: await baseOption);
-      final result = BaseResponse.fromJson(response.data);
+    final data = <String, dynamic>{
+      'id_kost': idKos,
+      'jumlah_kontrakan': jumlahKos,
+      'harga_per_bulan': harga,
+      'jumlah_ruang': jumlahRuang,
+      'is_perabot': perabot ? 1 : 0,
+      'is_rumah': rumah ? 1 : 0,
+      'is_kamar_mandi_dalam': kamarMandi ? 1 : 0,
+      'is_listrik': listrik ? 1 : 0,
+      'luas': luas,
+      'nama_tipe': namaTipe,
+    };
+    final response = await dio.post(ApiConstant.kosTipe,
+        data: data, options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
 
-      return result;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    return result;
   }
 
   @override
   Future<KosTipeModel> geDetailKosTipe({required int id}) async {
-    try {
-      final response = await dio.get('${ApiConstant.kosTipe}/$id',
-          options: await baseOption);
-      final result = BaseResponse.fromJson(response.data);
+    final response =
+        await dio.get('${ApiConstant.kosTipe}/$id', options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
 
-      return KosTipeModel.fromJson(result.data);
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    return KosTipeModel.fromJson(result.data);
   }
 
   @override
@@ -304,47 +224,31 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
       required bool rumah,
       required bool kamarMandi,
       required bool listrik}) async {
-    try {
-      final data = <String, dynamic>{
-        'id_kost': idKos,
-        'jumlah_kontrakan': jumlahKos,
-        'harga_per_bulan': harga,
-        'jumlah_ruang': jumlahRuang,
-        'is_perabot': perabot ? 1 : 0,
-        'is_rumah': rumah ? 1 : 0,
-        'is_kamar_mandi_dalam': kamarMandi ? 1 : 0,
-        'is_listrik': listrik ? 1 : 0,
-        'luas': luas,
-        'nama_tipe': namaTipe,
-      };
-      final response = await dio.post('${ApiConstant.kosTipe}/$idKosTipe',
-          data: data, options: await baseOption);
-      final result = BaseResponse.fromJson(response.data);
+    final data = <String, dynamic>{
+      'id_kost': idKos,
+      'jumlah_kontrakan': jumlahKos,
+      'harga_per_bulan': harga,
+      'jumlah_ruang': jumlahRuang,
+      'is_perabot': perabot ? 1 : 0,
+      'is_rumah': rumah ? 1 : 0,
+      'is_kamar_mandi_dalam': kamarMandi ? 1 : 0,
+      'is_listrik': listrik ? 1 : 0,
+      'luas': luas,
+      'nama_tipe': namaTipe,
+    };
+    final response = await dio.post('${ApiConstant.kosTipe}/$idKosTipe',
+        data: data, options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
 
-      return result;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    return result;
   }
 
   @override
   Future<BaseResponse> deleteKosTipe({required int id}) async {
-    try {
-      final response = await dio.delete('${ApiConstant.kosTipe}/$id',
-          options: await baseOption);
-      final result = BaseResponse.fromJson(response.data);
+    final response = await dio.delete('${ApiConstant.kosTipe}/$id',
+        options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
 
-      return result;
-    } catch (e) {
-      if (e is DioError) {
-        throw WException(e);
-      } else {
-        throw ServerException();
-      }
-    }
+    return result;
   }
 }

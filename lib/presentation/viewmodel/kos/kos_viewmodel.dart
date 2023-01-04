@@ -66,7 +66,7 @@ class KosViewModel extends BaseViewModel {
 
     if (response.isLeft()) {
       isLoading = false;
-      failure!.showAlert(context);
+      failure!.showAlert();
       return;
     }
 
