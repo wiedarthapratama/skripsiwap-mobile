@@ -10,7 +10,7 @@ class HomeViewModel extends BaseViewModel {
   void init() async {
     isLoading = true;
 
-    final response = await repository.getListKos();
+    final response = await repository.getRecommendation();
     final List<KosHomeModel> data = response.fold((l) => [], (r) => r);
     dataRekomendasi = data;
     isLoading = false;

@@ -16,7 +16,7 @@ class KosViewModel extends BaseViewModel {
   void init() async {
     isLoading = true;
 
-    final response = await repository.getListKosOwner();
+    final response = await repository.getListKos();
     final List<KosModel> data = response.fold((l) => [], (r) => r);
 
     this.data = data;

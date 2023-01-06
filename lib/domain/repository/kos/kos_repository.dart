@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
@@ -6,11 +8,11 @@ import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRepository {
-  Future<Either<WException, List<KosHomeModel>>> getListKos();
-  Future<Either<WException, KosTipeModel>> getDetailKos(
+  Future<Either<WException, List<KosHomeModel>>> getRecommendation();
+  Future<Either<WException, List<KosModel>>> getListKos();
+  Future<Either<WException, KosTipeModel>> getPengontrakDetailKos(
       {required int idKosTipe});
-  Future<Either<WException, List<KosModel>>> getListKosOwner();
-  Future<Either<WException, KosModel>> geDetailKosOwner({required int idKos});
+  Future<Either<WException, KosModel>> getDetailKos({required int idKos});
   Future<Either<WException, BaseResponse>> saveKos(
       {required String title,
       required String description,
@@ -42,7 +44,7 @@ abstract class KosRepository {
       required bool rumah,
       required bool kamarMandi,
       required bool listrik});
-  Future<Either<WException, KosTipeModel>> geDetailKosTipe({required int id});
+  Future<Either<WException, KosTipeModel>> getDetailKosTipe({required int id});
   Future<Either<WException, BaseResponse>> updateKosTipe(
       {required int idKosTipe,
       required int idKos,
@@ -56,4 +58,6 @@ abstract class KosRepository {
       required bool kamarMandi,
       required bool listrik});
   Future<Either<WException, BaseResponse>> deleteKosTipe({required int id});
+  Future<Either<WException, BaseResponse>> saveFotoTipe(
+      {required int idKosTipe, required bool mainFoto, required File file});
 }

@@ -5,6 +5,7 @@ import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
+import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/presentation/viewmodel/kos/kos_detail_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
@@ -83,106 +84,9 @@ class _KosDetailScreenState extends State<KosDetailScreen> {
                         ),
                         WSpacing.vertical.size12,
                         ...viewModel.model.dataTipe
-                            .map((tipe) => Container(
-                                  margin: const EdgeInsets.only(
-                                      top: 12, right: 12, left: 12),
-                                  decoration: BoxDecoration(
-                                      color: WColors.white,
-                                      borderRadius: WRadius.size6,
-                                      boxShadow: [wShadowCard]),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      onTap: () =>
-                                          {} /* NavigationService()
-                                .router
-                                .push(KosDetailRoute(id: model.id)) */
-                                      ,
-                                      borderRadius: WRadius.size6,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    tipe.namaTipe,
-                                                    style: WTextStyle
-                                                        .headline3.semiBold,
-                                                  ),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Material(
-                                                      color: Colors.transparent,
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          final add = await NavigationService()
-                                                              .router
-                                                              .push(KosTipeFormRoute(
-                                                                  id: tipe.id,
-                                                                  kosModel:
-                                                                      viewModel
-                                                                          .model));
-
-                                                          if (add != null) {
-                                                            viewModel.init(
-                                                                widget.id);
-                                                          }
-                                                        },
-                                                        borderRadius:
-                                                            WRadius.circular(
-                                                                50),
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: Icon(
-                                                            Icons.edit,
-                                                            size: 16,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    WSpacing.horizontal.size4,
-                                                    Material(
-                                                      color: Colors.transparent,
-                                                      child: InkWell(
-                                                        onTap: () => viewModel
-                                                            .onDelete(tipe),
-                                                        borderRadius:
-                                                            WRadius.circular(
-                                                                50),
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: Icon(
-                                                            Icons.delete,
-                                                            size: 16,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                            WSpacing.vertical.size6,
-                                            Text(
-                                              tipe.hargaPerBulan.idrFormat,
-                                              style: WTextStyle.body2.copyWith(
-                                                  color: WColors.blue),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                            .map((tipe) => _KosTipeItemView(
+                                  model: tipe,
+                                  viewModel: viewModel,
                                 ))
                             .toList()
                       ],
@@ -190,6 +94,99 @@ class _KosDetailScreenState extends State<KosDetailScreen> {
                   )),
         );
       }),
+    );
+  }
+}
+
+class _KosTipeItemView extends StatelessWidget {
+  const _KosTipeItemView(
+      {Key? key, required this.model, required this.viewModel})
+      : super(key: key);
+  final KosTipeModel model;
+  final KosDetailViewModel viewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 12, right: 12, left: 12),
+      decoration: BoxDecoration(
+          color: WColors.white,
+          borderRadius: WRadius.size6,
+          boxShadow: [wShadowCard]),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => NavigationService()
+              .router
+              .push(KosTipeDetailRoute(id: model.id, kos: viewModel.model)),
+          borderRadius: WRadius.size6,
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        model.namaTipe,
+                        style: WTextStyle.headline3.semiBold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () async {
+                              final add = await NavigationService().router.push(
+                                  KosTipeFormRoute(
+                                      id: model.id, kosModel: viewModel.model));
+
+                              if (add != null) {
+                                viewModel.init(model.id);
+                              }
+                            },
+                            borderRadius: WRadius.circular(50),
+                            child: const Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.edit,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                        WSpacing.horizontal.size4,
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () => viewModel.onDelete(model),
+                            borderRadius: WRadius.circular(50),
+                            child: const Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.delete,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                WSpacing.vertical.size6,
+                Text(
+                  model.hargaPerBulan.idrFormat,
+                  style: WTextStyle.body2.copyWith(color: WColors.blue),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

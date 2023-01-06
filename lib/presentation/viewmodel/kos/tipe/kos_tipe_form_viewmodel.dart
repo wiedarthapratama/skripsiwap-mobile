@@ -62,7 +62,7 @@ class KosTipeFormViewModel extends BaseViewModel {
   void _loadData() async {
     isLoading = true;
 
-    final response = await repository.geDetailKosTipe(id: idKosTipe!);
+    final response = await repository.getDetailKosTipe(id: idKosTipe!);
     final failure = response.fold((l) => l, (r) => null);
     final data = response.fold((l) => null, (r) => r);
 
