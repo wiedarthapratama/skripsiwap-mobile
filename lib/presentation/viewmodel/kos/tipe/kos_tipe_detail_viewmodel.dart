@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
@@ -11,7 +10,6 @@ import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
-import 'package:skripsi_wap/util/util.dart';
 
 class KosTipeDetailViewModel extends BaseViewModel {
   final KosRepository repository = Injection.locator<KosRepository>();

@@ -8,6 +8,7 @@ import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
+import 'package:skripsi_wap/data/model/pengontrak/pengontrak_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
 
@@ -247,6 +248,19 @@ class KosRepositoryImpl implements KosRepository {
     try {
       final response = await remoteDataSource.saveFotoTipe(
           idKosTipe: idKosTipe, mainFoto: mainFoto, file: file);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, PengontrakModel>> getKosSaya() async {
+    try {
+      final response = await remoteDataSource.getKosSaya();
 
       return Right(response);
     } on DioError catch (e) {

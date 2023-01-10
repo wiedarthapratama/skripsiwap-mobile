@@ -5,6 +5,7 @@ import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
+import 'package:skripsi_wap/data/model/pengontrak/pengontrak_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRepository {
@@ -60,4 +61,5 @@ abstract class KosRepository {
   Future<Either<WException, BaseResponse>> deleteKosTipe({required int id});
   Future<Either<WException, BaseResponse>> saveFotoTipe(
       {required int idKosTipe, required bool mainFoto, required File file});
+  Future<Either<WException, PengontrakModel>> getKosSaya();
 }
