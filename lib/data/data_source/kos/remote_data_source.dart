@@ -6,6 +6,7 @@ import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
+import 'package:skripsi_wap/data/model/pengontrak/pengontrak_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRemoteDataSource {
@@ -62,6 +63,7 @@ abstract class KosRemoteDataSource {
   Future<BaseResponse> deleteKosTipe({required int id});
   Future<BaseResponse> saveFotoTipe(
       {required int idKosTipe, required bool mainFoto, required File file});
+  Future<PengontrakModel> getKosSaya();
 }
 
 class KosRemoteDataSourceImpl extends RemoteDataSource
@@ -273,5 +275,13 @@ class KosRemoteDataSourceImpl extends RemoteDataSource
     final result = BaseResponse.fromJson(response.data);
 
     return result;
+  }
+
+  @override
+  Future<PengontrakModel> getKosSaya() async {
+    final response =
+        await dio.get(ApiConstant.pengontrakKosSaya, options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
+    return PengontrakModel.fromJson(result.data);
   }
 }

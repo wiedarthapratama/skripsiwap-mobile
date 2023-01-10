@@ -11,6 +11,7 @@ class ApiConstant {
   //! PENGONTRAK
   static String get pengontrakHome => 'api/pengontrak/home';
   static String get pengontrakKosDetail => 'api/pengontrak/kost-detail';
+  static String get pengontrakKosSaya => 'api/pengontrak/kost-saya';
 
   //! REGION
   static String get province => 'api/alamat/provinsi';
