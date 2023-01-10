@@ -54,7 +54,7 @@ class _MyFlatPageState extends State<MyFlatPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Judul Kost Ceritanya',
+                    "${viewModel.model.kostTipe!.kos!.judul} - ${viewModel.model.kostTipe!.namaTipe}",
                     style: WTextStyle.headline3.bold,
                   ),
                   WSpacing.vertical.size8,
@@ -64,7 +64,7 @@ class _MyFlatPageState extends State<MyFlatPage> {
                   ),
                   WSpacing.vertical.size4,
                   Text(
-                    'Alamat: Jl. Citra Raya Boulevard No.25/ 01, Panongan, Kec. Panongan, Kabupaten Tangerang, Banten 15711',
+                    viewModel.model.kostTipe!.kos!.alamat.toLowerCase(),
                     style: WTextStyle.subtitle2,
                   ),
                   WSpacing.vertical.size8,

@@ -68,7 +68,7 @@ class _PengaduanScreenState extends State<PengaduanScreen> {
                 title: 'Kirim',
                 onTap: () => NavigationService()
                     .router
-                    .push(const PengaduanDetailRoute()),
+                    .push(PengaduanDetailRoute(id: 0)),
                 fullWidth: false,
               ),
             )

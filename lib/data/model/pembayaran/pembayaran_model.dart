@@ -1,4 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skripsi_wap/data/model/kos/kos_model.dart';
+import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
+import 'package:skripsi_wap/data/model/master/bank_model.dart';
+import 'package:skripsi_wap/data/model/user/user_model.dart';
 
 part 'pembayaran_model.freezed.dart';
 part 'pembayaran_model.g.dart';
@@ -9,16 +13,19 @@ class PembayaranModel with _$PembayaranModel {
     required int id,
     @JsonKey(name: 'id_user') required int idUser,
     @JsonKey(name: 'id_pemilik') required int idPemilik,
-    @JsonKey(name: 'id_kost') required int idKost,
-    @JsonKey(name: 'id_kost_stok') required int idKostJenis,
+    @JsonKey(name: 'id_kost') required int idKos,
+    @JsonKey(name: 'id_kost_stok') required int idKosStok,
     @JsonKey(name: 'jumlah_bayar') required int jumlahBayar,
     @JsonKey(name: 'tanggal_bayar') required String tanggalBayar,
     @JsonKey(name: 'bukti_bayar') required String buktiBayar,
     required String status,
-    @JsonKey(name: 'namaRekening') required String namaRekening,
+    @JsonKey(name: 'nama_rekening') required String namaRekening,
     @JsonKey(name: 'nama_bank') required String namaBank,
     @JsonKey(name: 'to_id_bank') required int toIdBank,
-    @JsonKey(name: 'komentar') String? komentar,
+    required UserModel user,
+    required KosModel kos,
+    @JsonKey(name: 'kost_tipe') required KosTipeModel kosTipe,
+    required BankModel bank,
   }) = _PembayaranModel;
 
   factory PembayaranModel.fromJson(Map<String, dynamic> data) =>

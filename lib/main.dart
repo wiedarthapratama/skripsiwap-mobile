@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:skripsi_wap/config/assets.gen.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
@@ -39,6 +40,7 @@ void main() async {
     [DeviceOrientation.portraitUp],
   );
   await FirebaseService.instance.init();
+  await initializeDateFormatting('id');
   Injection.init();
 
   runApp(const MyApp());

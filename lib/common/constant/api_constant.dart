@@ -24,4 +24,10 @@ class ApiConstant {
   static String get kos => 'api/kost';
   static String get kosTipe => 'api/kost-tipe';
   static String get kosFoto => 'api/kost-foto';
+
+  //! PEKERJA
+  static String get pekerja => 'api/pekerja';
+  static String get pengontrak => 'api/pengontrak';
+  static String get pengaduan => 'api/pengaduan';
+  static String get pengaduanKirimPekerja => 'api/pengaduan/kirim-pekerja';
 }
