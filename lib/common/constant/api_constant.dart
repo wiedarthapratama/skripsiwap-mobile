@@ -5,6 +5,8 @@ class ApiConstant {
   static String get register => 'api/register';
   static String get refreshToken => 'api/refresh';
   static String get profile => 'api/profile';
+  static String get ubahProfile => 'api/profile/update';
+  static String get ubahPassword => 'api/profile/password';
 
   //! PENGONTRAK
   static String get pengontrakHome => 'api/pengontrak/home';
