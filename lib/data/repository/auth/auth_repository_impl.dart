@@ -6,7 +6,6 @@ import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
 import 'package:skripsi_wap/domain/repository/auth/auth_repository.dart';
-import 'package:skripsi_wap/util/util.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;

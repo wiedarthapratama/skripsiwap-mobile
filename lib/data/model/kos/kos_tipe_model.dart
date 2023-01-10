@@ -18,7 +18,7 @@ class KosTipeModel with _$KosTipeModel {
     @JsonKey(name: 'is_kamar_mandi_dalam') required int isKamarMandiDalem,
     @JsonKey(name: 'is_listrik') required int isListrik,
     required String luas,
-    @JsonKey(name: 'nama_tipe') required String namaTipe,
+    @JsonKey(name: 'nama_tipe') @Default('') String namaTipe,
     @JsonKey(name: 'kost') KosModel? kos,
     @JsonKey(name: 'foto') @Default(<KosFotoModel>[]) List<KosFotoModel> fotos,
   }) = _KosTipeModel;

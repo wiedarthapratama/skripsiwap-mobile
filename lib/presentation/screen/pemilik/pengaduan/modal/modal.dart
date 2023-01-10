@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:skripsi_wap/common/extension/extension.dart';
+import 'package:skripsi_wap/common/style/style.dart';
+import 'package:skripsi_wap/config/colors.gen.dart';
+import 'package:skripsi_wap/config/injection.dart';
+import 'package:skripsi_wap/data/model/pekerja/pekerja_model.dart';
+import 'package:skripsi_wap/domain/repository/pekerja/pekerja_repository.dart';
+import 'package:skripsi_wap/presentation/viewmodel/pengaduan/pengaduan_detail_viewmodel.dart';
+import 'package:skripsi_wap/presentation/widget/button/button.dart';
+import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
+import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
+import 'package:skripsi_wap/presentation/widget/textfield/textfield.dart';
+import 'package:skripsi_wap/service/navigation_service.dart';
+import 'package:skripsi_wap/util/validator/validator.dart';
+
+part 'kirim_pekerja_modal.dart';
+part 'list_pekerja_modal.dart';
