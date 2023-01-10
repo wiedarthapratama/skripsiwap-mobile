@@ -11,9 +11,16 @@ import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_form_screen.dart
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/tipe/kos_tipe_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/tipe/kos_tipe_form_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/pekerja/pekerja_form_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/pekerja/pekerja_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pemilik_screen.dart';
-import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_detail_screen.dart';
-import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/pengaduan/pengaduan_detail_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/pengaduan/pengaduan_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/pengontrak/pengontrak_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_detail_screen.dart'
+    as pengaduan_detail;
+import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart'
+    as pengaduan;
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_password/ubah_password_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_profile/ubah_profile_screen.dart';
@@ -51,14 +58,14 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
         path: PaymentDetailScreen.name,
         page: PaymentDetailScreen,
       ),
-      AutoRoute(
-        path: PengaduanScreen.name,
-        page: PengaduanScreen,
+      /* AutoRoute(
+        path: pengaduan.PengaduanScreen.name,
+        page: pengaduan.PengaduanScreen,
       ),
       AutoRoute(
-        path: PengaduanDetailScreen.name,
-        page: PengaduanDetailScreen,
-      ),
+        path: pengaduan_detail.PengaduanDetailScreen.name,
+        page: pengaduan_detail.PengaduanDetailScreen,
+      ), */
       AutoRoute(
         path: UbahProfileScreen.name,
         page: UbahProfileScreen,
@@ -106,6 +113,26 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
       AutoRoute(
         path: KosTipeDetailScreen.name,
         page: KosTipeDetailScreen,
+      ),
+      AutoRoute(
+        path: PekerjaScreen.name,
+        page: PekerjaScreen,
+      ),
+      AutoRoute(
+        path: PekerjaFormScreen.name,
+        page: PekerjaFormScreen,
+      ),
+      AutoRoute(
+        path: PengontrakScreen.name,
+        page: PengontrakScreen,
+      ),
+      AutoRoute(
+        path: PengaduanScreen.name,
+        page: PengaduanScreen,
+      ),
+      AutoRoute(
+        path: PengaduanDetailScreen.name,
+        page: PengaduanDetailScreen,
       ),
     ])
 class $AppRouter {}
