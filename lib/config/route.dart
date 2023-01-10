@@ -17,10 +17,6 @@ import 'package:skripsi_wap/presentation/screen/pemilik/pemilik_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pengaduan/pengaduan_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pengaduan/pengaduan_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pengontrak/pengontrak_screen.dart';
-import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_detail_screen.dart'
-    as pengaduan_detail;
-import 'package:skripsi_wap/presentation/screen/pengaduan/pengaduan_screen.dart'
-    as pengaduan;
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_password/ubah_password_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_profile/ubah_profile_screen.dart';
