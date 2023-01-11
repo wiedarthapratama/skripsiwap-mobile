@@ -7,10 +7,11 @@ import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/kos/kos_home_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/model/kos/kos_model.dart';
+import 'package:skripsi_wap/data/model/kos/kos_saya_model.dart';
 import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
-import 'package:skripsi_wap/data/model/pengontrak/pengontrak_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 import 'package:skripsi_wap/domain/repository/kos/kos_repository.dart';
+import 'package:skripsi_wap/util/util.dart';
 
 class KosRepositoryImpl implements KosRepository {
   final KosRemoteDataSource remoteDataSource;
@@ -258,14 +259,15 @@ class KosRepositoryImpl implements KosRepository {
   }
 
   @override
-  Future<Either<WException, PengontrakModel>> getKosSaya() async {
+  Future<Either<WException, KosSayaModel>> getKosSaya() async {
     try {
       final response = await remoteDataSource.getKosSaya();
 
       return Right(response);
     } on DioError catch (e) {
       return Left(e.exception);
-    } catch (_) {
+    } catch (_, __) {
+      debugLog('message', error: _, stackTrace: __);
       return const Left(WException.internalServerException());
     }
   }

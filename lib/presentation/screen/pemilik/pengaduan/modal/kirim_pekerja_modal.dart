@@ -26,8 +26,9 @@ class KirimPekerjaModal extends StatelessWidget {
                     child: WPrimaryButton(
                         title: 'Kirim',
                         onTap: () {
-                          if (!viewModel.formKey.currentState!.validate())
+                          if (!viewModel.formKey.currentState!.validate()) {
                             return;
+                          }
                           NavigationService().router.popForced(true);
                         })),
               ],
