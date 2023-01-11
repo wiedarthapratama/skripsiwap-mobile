@@ -7,9 +7,9 @@ part 'bank_model.g.dart';
 class BankModel with _$BankModel {
   factory BankModel(
       {required int id,
-      required String namaBank,
-      required String nomorRekening,
-      required int idPemilik}) = _BankModel;
+      @JsonKey(name: 'nama_bank') required String namaBank,
+      @JsonKey(name: 'nomor_rekening') required String nomorRekening,
+      @JsonKey(name: 'id_pemilik') required int idPemilik}) = _BankModel;
 
   factory BankModel.fromJson(Map<String, dynamic> data) =>
       _$BankModelFromJson(data);

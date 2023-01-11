@@ -93,7 +93,8 @@ class _PemilikScreenState extends State<PemilikScreen> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () =>
+                    NavigationService().router.push(const PembayaranRoute()),
                 borderRadius: WRadius.size12,
                 child: Container(
                   padding: const EdgeInsets.all(24),
@@ -108,7 +109,9 @@ class _PemilikScreenState extends State<PemilikScreen> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () => NavigationService()
+                    .router
+                    .push(const CalonPengontrakRoute()),
                 borderRadius: WRadius.size12,
                 child: Container(
                   padding: const EdgeInsets.all(24),

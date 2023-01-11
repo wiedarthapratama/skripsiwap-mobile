@@ -4,12 +4,14 @@ import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
+import 'package:skripsi_wap/data/model/kos/kos_foto_model.dart';
 import 'package:skripsi_wap/presentation/viewmodel/kos/kos_saya_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/image/image.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/service/navigation_service.dart';
+import 'package:skripsi_wap/util/util.dart';
 
 class MyFlatPage extends StatefulWidget {
   const MyFlatPage({Key? key}) : super(key: key);
@@ -47,74 +49,82 @@ class _MyFlatPageState extends State<MyFlatPage> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${viewModel.model.kostTipe!.kos!.judul} - ${viewModel.model.kostTipe!.namaTipe}",
-                    style: WTextStyle.headline3.bold,
-                  ),
-                  WSpacing.vertical.size8,
-                  Text(
-                    'Nama Pemilik Kost - ',
-                    style: WTextStyle.subtitle2,
-                  ),
-                  WSpacing.vertical.size4,
-                  Text(
-                    viewModel.model.kostTipe!.kos!.alamat.toLowerCase(),
-                    style: WTextStyle.subtitle2,
-                  ),
-                  WSpacing.vertical.size8,
-                  Text(
-                    'Foto',
-                    style: WTextStyle.headline3.bold,
-                  ),
-                  WSpacing.vertical.size4,
-                  SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 10,
-                        itemBuilder: (_, position) => Container(
-                              margin: const EdgeInsets.only(right: 16),
-                              width: 150,
-                              child: const WCacheImage(
-                                url:
-                                    'https://pps.unj.ac.id/wp-content/uploads/2021/09/placeholder-1.png',
-                                // height: 150,
-                                fit: BoxFit.cover,
-                              ),
-                            )),
-                  ),
-                  WSpacing.vertical.size16,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Pembayaran',
-                        style: WTextStyle.headline3.bold,
-                      ),
-                      WSecondaryButton(
-                        title: 'Bayar Kos',
-                        onTap: () => NavigationService()
-                            .router
-                            .push(const PaymentRoute()),
-                        fullWidth: false,
-                      )
-                    ],
-                  ),
-                  WSpacing.vertical.size8,
-                  ListView(
-                    shrinkWrap: true,
-                    primary: false,
-                    children: List.generate(
-                        3,
-                        (index) => Container(
+          return viewModel.model == null
+              ? const Center(
+                  child: Text('Error'),
+                )
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${viewModel.model!.kosTipe.kos!.judul} - ${viewModel.model!.kosTipe.namaTipe}",
+                          style: WTextStyle.headline3.bold,
+                        ),
+                        WSpacing.vertical.size8,
+                        Text(
+                          'Nama Pemilik Kost -',
+                          style: WTextStyle.subtitle2,
+                        ),
+                        WSpacing.vertical.size4,
+                        Text(
+                          viewModel.model!.kosTipe.kos!.alamat.toLowerCase(),
+                          style: WTextStyle.subtitle2,
+                        ),
+                        WSpacing.vertical.size8,
+                        Text(
+                          'Foto',
+                          style: WTextStyle.headline3.bold,
+                        ),
+                        WSpacing.vertical.size4,
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: (viewModel.model?.kosTipe.fotos ??
+                                      <KosFotoModel>[])
+                                  .length,
+                              itemBuilder: (_, position) => Container(
+                                    margin: const EdgeInsets.only(right: 16),
+                                    width: 150,
+                                    child: WCacheImage(
+                                      url: viewModel
+                                          .model!.kosTipe.fotos[position].foto,
+                                      // height: 150,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
+                        ),
+                        WSpacing.vertical.size16,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Pembayaran',
+                              style: WTextStyle.headline3.bold,
+                            ),
+                            WSecondaryButton(
+                              title: 'Bayar Kos',
+                              onTap: () => NavigationService()
+                                  .router
+                                  .push(const PaymentRoute()),
+                              fullWidth: false,
+                            )
+                          ],
+                        ),
+                        WSpacing.vertical.size8,
+                        ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: viewModel.model?.dataPembayaran.length,
+                          itemBuilder: (_, position) {
+                            final model =
+                                viewModel.model!.dataPembayaran[position];
+                            return Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: () {},
@@ -135,12 +145,13 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    'Pembayaran ke 1',
+                                                    'Pembayaran ke ${position + 1}',
                                                     style: WTextStyle
                                                         .subtitle2.bold,
                                                   ),
                                                   Text(
-                                                    '01 Januari 2023',
+                                                    model.tanggalBayar
+                                                        .dateFormat.formatEdmY,
                                                     style: WTextStyle
                                                         .subtitle2.bold,
                                                   )
@@ -158,33 +169,37 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                   ),
                                 ),
                               ),
-                            )),
-                  ),
-                  WSpacing.vertical.size24,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Pengaduan',
-                        style: WTextStyle.headline3.bold,
-                      ),
-                      WSecondaryButton(
-                        title: 'Ajukan Keluhan',
-                        onTap: () => NavigationService()
-                            .router
-                            .push(const PengaduanRoute()),
-                        fullWidth: false,
-                      )
-                    ],
-                  ),
-                  WSpacing.vertical.size8,
-                  ListView(
-                    shrinkWrap: true,
-                    primary: false,
-                    children: List.generate(
-                        3,
-                        (index) => Container(
+                            );
+                          },
+                        ),
+                        WSpacing.vertical.size24,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Pengaduan',
+                              style: WTextStyle.headline3.bold,
+                            ),
+                            WSecondaryButton(
+                              title: 'Ajukan Keluhan',
+                              onTap: () => NavigationService()
+                                  .router
+                                  .push(const PengaduanRoute()),
+                              fullWidth: false,
+                            )
+                          ],
+                        ),
+                        WSpacing.vertical.size8,
+                        ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: viewModel.model?.dataPengaduan.length,
+                          itemBuilder: (_, position) {
+                            final model =
+                                viewModel.model!.dataPengaduan[position];
+
+                            return Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: () {},
@@ -205,12 +220,13 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    'Pengaduan ke 1',
+                                                    model.judul,
                                                     style: WTextStyle
                                                         .subtitle2.bold,
                                                   ),
                                                   Text(
-                                                    '01 Januari 2023',
+                                                    model.tanggal.dateFormat
+                                                        .formatEdmY,
                                                     style: WTextStyle
                                                         .subtitle2.bold,
                                                   )
@@ -228,12 +244,13 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                   ),
                                 ),
                               ),
-                            )),
-                  )
-                ],
-              ),
-            ),
-          );
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                );
         }),
       ),
     );

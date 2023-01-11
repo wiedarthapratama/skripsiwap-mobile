@@ -30,4 +30,13 @@ class ApiConstant {
   static String get pengontrak => 'api/pengontrak';
   static String get pengaduan => 'api/pengaduan';
   static String get pengaduanKirimPekerja => 'api/pengaduan/kirim-pekerja';
+
+  //! PEMBAYARAN
+  static String get pembayaran => 'api/pembayaran';
+  static String get pembayaranTerima => 'api/pembayaran/terima';
+  static String get pembayaranTolak => 'api/pembayaran/tolak';
+
+  //! PEMBAYARAN
+  static String get pendaftaran => 'api/pendaftaran';
+  static String get pendaftaranTerima => 'api/pendaftaran/terima';
 }

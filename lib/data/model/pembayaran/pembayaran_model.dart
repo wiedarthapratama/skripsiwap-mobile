@@ -22,10 +22,10 @@ class PembayaranModel with _$PembayaranModel {
     @JsonKey(name: 'nama_rekening') required String namaRekening,
     @JsonKey(name: 'nama_bank') required String namaBank,
     @JsonKey(name: 'to_id_bank') required int toIdBank,
-    required UserModel user,
-    required KosModel kos,
-    @JsonKey(name: 'kost_tipe') required KosTipeModel kosTipe,
-    required BankModel bank,
+    required UserModel? user,
+    @JsonKey(name: 'kost') KosModel? kos,
+    @JsonKey(name: 'kost_tipe') KosTipeModel? kosTipe,
+    required BankModel? bank,
   }) = _PembayaranModel;
 
   factory PembayaranModel.fromJson(Map<String, dynamic> data) =>
