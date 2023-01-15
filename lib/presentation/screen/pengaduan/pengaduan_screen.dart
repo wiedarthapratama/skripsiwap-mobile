@@ -66,9 +66,7 @@ class _PengaduanScreenState extends State<PengaduanScreen> {
             Center(
               child: WPrimaryButton(
                 title: 'Kirim',
-                onTap: () => NavigationService()
-                    .router
-                    .push(PengaduanDetailRoute(id: 0)),
+                onTap: () => print('kirim'),
                 fullWidth: false,
               ),
             )

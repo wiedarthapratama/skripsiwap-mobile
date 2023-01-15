@@ -205,7 +205,9 @@ class _MyFlatPageState extends State<MyFlatPage> {
                             return Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () => NavigationService()
+                                    .router
+                                    .push(PengaduanDetailRoute(id: model.id)),
                                 child: Container(
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(

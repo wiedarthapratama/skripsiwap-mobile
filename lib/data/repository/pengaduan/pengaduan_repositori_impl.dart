@@ -55,4 +55,41 @@ class PengaduanRepositoryImpl implements PengaduanRepository {
       return const Left(WException.internalServerException());
     }
   }
+
+  @override
+  Future<Either<WException, PengaduanModel>> getDetailPengaduanV2(
+      {required int id}) async {
+    try {
+      final response = await remoteDataSource.getDetailPengaduanV2(id: id);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, BaseResponse>> submitPengaduan(
+      {required int idKost,
+      required int idKostStok,
+      required String judul,
+      required String deskripsi,
+      required String fotoPengaduan}) async {
+    try {
+      final response = await remoteDataSource.submitPengaduan(
+          idKost: idKost,
+          idKostStok: idKostStok,
+          judul: judul,
+          deskripsi: deskripsi,
+          fotoPengaduan: fotoPengaduan);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
 }

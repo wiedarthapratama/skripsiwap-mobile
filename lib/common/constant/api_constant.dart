@@ -12,6 +12,11 @@ class ApiConstant {
   static String get pengontrakHome => 'api/pengontrak/home';
   static String get pengontrakKosDetail => 'api/pengontrak/kost-detail';
   static String get pengontrakKosSaya => 'api/pengontrak/kost-saya';
+  static String get pembayaranSubmit => 'api/pengontrak/submit-pembayaran';
+  static String get pembayaranDetail => 'api/pengontrak/pembayaran/detail';
+  static String get pengontrakPengaduanDetail =>
+      'api/pengontrak/pengaduan/detail';
+  static String get pengaduanSubmit => 'api/pengontrak/submit-pengaduan';
 
   //! REGION
   static String get province => 'api/alamat/provinsi';
@@ -35,8 +40,6 @@ class ApiConstant {
   static String get pembayaran => 'api/pembayaran';
   static String get pembayaranTerima => 'api/pembayaran/terima';
   static String get pembayaranTolak => 'api/pembayaran/tolak';
-  static String get pembayaranSubmit => 'api/pengontrak/submit-pembayaran';
-  static String get pembayaranDetail => 'api/pengontrak/pembayaran/detail';
 
   //! PEMBAYARAN
   static String get pendaftaran => 'api/pendaftaran';
