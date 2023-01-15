@@ -10,6 +10,7 @@ class PembayaranViewModel extends BaseViewModel {
   final PembayaranRepository repository =
       Injection.locator<PembayaranRepository>();
   List<PembayaranModel> data = [];
+  late PembayaranModel dataPembayaran;
 
   void init() async {
     isLoading = true;
@@ -71,5 +72,57 @@ class PembayaranViewModel extends BaseViewModel {
     await WModal.show(context, title: 'Berhasil', message: data!.message);
     isLoading = false;
     init();
+  }
+
+  void _doSubmit(
+      {required int idKost,
+      required int idKostStok,
+      required String buktiBayar,
+      required int jumlahBayar,
+      required String namaRekening,
+      required String namaBank,
+      required int toIdBank}) async {
+    isLoading = true;
+
+    final response = await repository.submitPembayaran(
+        idKost: idKost,
+        idKostStok: idKostStok,
+        buktiBayar: buktiBayar,
+        jumlahBayar: jumlahBayar,
+        namaRekening: namaRekening,
+        namaBank: namaBank,
+        toIdBank: toIdBank);
+    final failure = response.fold((l) => l, (r) => null);
+    final data = response.fold((l) => null, (r) => r);
+
+    if (response.isLeft()) {
+      isLoading = false;
+      failure!.showAlert();
+      return;
+    }
+
+    await WModal.show(context, title: 'Berhasil', message: data!.message);
+    isLoading = false;
+    init();
+  }
+
+  void getDetail({required int idPembayaran}) async {
+    isLoading = true;
+
+    final response =
+        await repository.getDetailPembayaran(idPembayaran: idPembayaran);
+    final failure = response.fold((l) => l, (r) => null);
+    final data = response.fold((l) => null, (r) => r);
+
+    if (response.isLeft()) {
+      isLoading = false;
+      navigationService.router.popForced();
+      failure!.showAlert();
+      return;
+    }
+
+    dataPembayaran = data!;
+    isLoading = false;
+    notifyListeners();
   }
 }

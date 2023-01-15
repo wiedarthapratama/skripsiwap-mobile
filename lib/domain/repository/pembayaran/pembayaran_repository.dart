@@ -9,4 +9,14 @@ abstract class PembayaranRepository {
       {required int idPembayaran});
   Future<Either<WException, BaseResponse>> tolakPembayaran(
       {required int idPembayaran, required String komentar});
+  Future<Either<WException, BaseResponse>> submitPembayaran(
+      {required int idKost,
+      required int idKostStok,
+      required String buktiBayar,
+      required int jumlahBayar,
+      required String namaRekening,
+      required String namaBank,
+      required int toIdBank});
+  Future<Either<WException, PembayaranModel>> getDetailPembayaran(
+      {required int idPembayaran});
 }

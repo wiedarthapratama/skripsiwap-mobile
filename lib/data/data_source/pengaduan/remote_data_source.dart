@@ -6,10 +6,17 @@ import 'package:skripsi_wap/data/response/base_response.dart';
 abstract class PengaduanRemoteDataSource {
   Future<List<PengaduanModel>> getListPengaduan();
   Future<PengaduanModel> getDetailPengaduan({required int id});
+  Future<PengaduanModel> getDetailPengaduanV2({required int id});
   Future<BaseResponse> kirimPekerja(
       {required int idPengaduan,
       required int idPekerja,
       required String durasi});
+  Future<BaseResponse> submitPengaduan(
+      {required int idKost,
+      required int idKostStok,
+      required String judul,
+      required String deskripsi,
+      required String fotoPengaduan});
 }
 
 class PengaduanRemoteDataSourceImpl extends RemoteDataSource
@@ -49,6 +56,37 @@ class PengaduanRemoteDataSourceImpl extends RemoteDataSource
         '${ApiConstant.pengaduanKirimPekerja}/$idPengaduan',
         data: data,
         options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
+
+    return result;
+  }
+
+  @override
+  Future<PengaduanModel> getDetailPengaduanV2({required int id}) async {
+    final response = await dio.get(
+        '${ApiConstant.pengontrakPengaduanDetail}/$id',
+        options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
+
+    return PengaduanModel.fromJson(result.data);
+  }
+
+  @override
+  Future<BaseResponse> submitPengaduan(
+      {required int idKost,
+      required int idKostStok,
+      required String judul,
+      required String deskripsi,
+      required String fotoPengaduan}) async {
+    final data = {
+      'id_kost': idKost,
+      'id_kost_stok': idKostStok,
+      'judul': judul,
+      'deskripsi': deskripsi,
+      'foto_pengaduan': fotoPengaduan
+    };
+    final response = await dio.post(ApiConstant.pengaduanSubmit,
+        data: data, options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
 
     return result;

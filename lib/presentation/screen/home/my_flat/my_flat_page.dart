@@ -5,6 +5,7 @@ import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/data/model/kos/kos_foto_model.dart';
+import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
 import 'package:skripsi_wap/presentation/viewmodel/kos/kos_saya_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
@@ -65,7 +66,7 @@ class _MyFlatPageState extends State<MyFlatPage> {
                         ),
                         WSpacing.vertical.size8,
                         Text(
-                          'Nama Pemilik Kost -',
+                          'Nama Pemilik Kost - ',
                           style: WTextStyle.subtitle2,
                         ),
                         WSpacing.vertical.size4,
@@ -127,7 +128,9 @@ class _MyFlatPageState extends State<MyFlatPage> {
                             return Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () => NavigationService()
+                                    .router
+                                    .push(PaymentDetailRoute(id: model.id)),
                                 child: Container(
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
@@ -202,7 +205,9 @@ class _MyFlatPageState extends State<MyFlatPage> {
                             return Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () => NavigationService()
+                                    .router
+                                    .push(PengaduanDetailRoute(id: model.id)),
                                 child: Container(
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
