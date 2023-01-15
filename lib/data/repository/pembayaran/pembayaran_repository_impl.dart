@@ -54,4 +54,46 @@ class PembayaranRepositoryImpl implements PembayaranRepository {
       return const Left(WException.internalServerException());
     }
   }
+
+  @override
+  Future<Either<WException, BaseResponse>> submitPembayaran(
+      {required int idKost,
+      required int idKostStok,
+      required String buktiBayar,
+      required int jumlahBayar,
+      required String namaRekening,
+      required String namaBank,
+      required int toIdBank}) async {
+    try {
+      final response = await remoteDataSource.submitPembayaran(
+          idKost: idKost,
+          idKostStok: idKostStok,
+          buktiBayar: buktiBayar,
+          jumlahBayar: jumlahBayar,
+          namaRekening: namaRekening,
+          namaBank: namaBank,
+          toIdBank: toIdBank);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, PembayaranModel>> getDetailPembayaran(
+      {required int idPembayaran}) async {
+    try {
+      final response = await remoteDataSource.getDetailPembayaran(
+          idPembayaran: idPembayaran);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
 }

@@ -76,8 +76,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Center(
               child: WPrimaryButton(
                 title: 'Kirim',
-                onTap: () =>
-                    NavigationService().router.push(const PaymentDetailRoute()),
+                onTap: () => print('p'),
                 fullWidth: false,
               ),
             )

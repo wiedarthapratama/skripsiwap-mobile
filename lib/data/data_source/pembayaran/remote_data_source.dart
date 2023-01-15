@@ -8,6 +8,15 @@ abstract class PembayaranRemoteDataSource {
   Future<BaseResponse> terimaPembayaran({required int idPembayaran});
   Future<BaseResponse> tolakPembayaran(
       {required int idPembayaran, required String komentar});
+  Future<BaseResponse> submitPembayaran(
+      {required int idKost,
+      required int idKostStok,
+      required String buktiBayar,
+      required int jumlahBayar,
+      required String namaRekening,
+      required String namaBank,
+      required int toIdBank});
+  Future<PembayaranModel> getDetailPembayaran({required int idPembayaran});
 }
 
 class PembayaranRemoteDataSourceImpl extends RemoteDataSource
@@ -45,5 +54,41 @@ class PembayaranRemoteDataSourceImpl extends RemoteDataSource
     final result = BaseResponse.fromJson(response.data);
 
     return result;
+  }
+
+  @override
+  Future<BaseResponse> submitPembayaran(
+      {required int idKost,
+      required int idKostStok,
+      required String buktiBayar,
+      required int jumlahBayar,
+      required String namaRekening,
+      required String namaBank,
+      required int toIdBank}) async {
+    final data = {
+      'id_kost': idKost,
+      'id_kost_stok': idKostStok,
+      'bukti_bayar': buktiBayar,
+      'jumlah_bayar': jumlahBayar,
+      'nama_rekening': namaRekening,
+      'nama_bank': namaBank,
+      'to_id_bank': toIdBank
+    };
+    final response = await dio.post(ApiConstant.pembayaranSubmit,
+        data: data, options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
+
+    return result;
+  }
+
+  @override
+  Future<PembayaranModel> getDetailPembayaran(
+      {required int idPembayaran}) async {
+    final response = await dio.get(
+        "${ApiConstant.pembayaranDetail}/$idPembayaran",
+        options: await baseOption);
+    final result = BaseResponse.fromJson(response.data);
+
+    return PembayaranModel.fromJson(result.data);
   }
 }

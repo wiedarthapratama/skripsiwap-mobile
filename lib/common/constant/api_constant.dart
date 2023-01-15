@@ -35,6 +35,8 @@ class ApiConstant {
   static String get pembayaran => 'api/pembayaran';
   static String get pembayaranTerima => 'api/pembayaran/terima';
   static String get pembayaranTolak => 'api/pembayaran/tolak';
+  static String get pembayaranSubmit => 'api/pengontrak/submit-pembayaran';
+  static String get pembayaranDetail => 'api/pengontrak/pembayaran/detail';
 
   //! PEMBAYARAN
   static String get pendaftaran => 'api/pendaftaran';
