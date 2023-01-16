@@ -3,6 +3,7 @@ import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/pengaduan/pengaduan_model.dart';
 import 'package:skripsi_wap/domain/repository/pengaduan/pengaduan_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
+import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
 
 class PengaduanViewModel extends BaseViewModel {
   final PengaduanRepository repository =
@@ -37,5 +38,33 @@ class PengaduanViewModel extends BaseViewModel {
     dataPengaduan = data!;
     isLoading = false;
     notifyListeners();
+  }
+
+  void _doSubmit(
+      {required int idKost,
+      required int idKostStok,
+      required String judul,
+      required String deskripsi,
+      required String fotoPengaduan}) async {
+    isLoading = true;
+
+    final response = await repository.submitPengaduan(
+        idKost: idKost,
+        idKostStok: idKostStok,
+        judul: judul,
+        deskripsi: deskripsi,
+        fotoPengaduan: fotoPengaduan);
+    final failure = response.fold((l) => l, (r) => null);
+    final data = response.fold((l) => null, (r) => r);
+
+    if (response.isLeft()) {
+      isLoading = false;
+      failure!.showAlert();
+      return;
+    }
+
+    await WModal.show(context, title: 'Berhasil', message: data!.message);
+    isLoading = false;
+    init();
   }
 }
