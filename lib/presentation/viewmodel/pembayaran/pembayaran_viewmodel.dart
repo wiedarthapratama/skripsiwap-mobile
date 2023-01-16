@@ -74,7 +74,7 @@ class PembayaranViewModel extends BaseViewModel {
     init();
   }
 
-  void _doSubmit(
+  /* void _doSubmit(
       {required int idKost,
       required int idKostStok,
       required String buktiBayar,
@@ -104,7 +104,7 @@ class PembayaranViewModel extends BaseViewModel {
     await WModal.show(context, title: 'Berhasil', message: data!.message);
     isLoading = false;
     init();
-  }
+  } */
 
   void getDetail({required int idPembayaran}) async {
     isLoading = true;

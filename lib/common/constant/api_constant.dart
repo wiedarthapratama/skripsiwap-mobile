@@ -44,4 +44,8 @@ class ApiConstant {
   //! PEMBAYARAN
   static String get pendaftaran => 'api/pendaftaran';
   static String get pendaftaranTerima => 'api/pendaftaran/terima';
+
+  //! BANK PENYEDIA
+  static String get bank => 'api/bank';
+  static String get bankPemilik => 'api/bank/id-pemilik';
 }

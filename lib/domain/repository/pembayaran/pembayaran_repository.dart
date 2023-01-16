@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/pembayaran/pembayaran_model.dart';
@@ -12,7 +14,7 @@ abstract class PembayaranRepository {
   Future<Either<WException, BaseResponse>> submitPembayaran(
       {required int idKost,
       required int idKostStok,
-      required String buktiBayar,
+      required File buktiBayar,
       required int jumlahBayar,
       required String namaRekening,
       required String namaBank,

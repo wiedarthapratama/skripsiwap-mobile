@@ -110,9 +110,16 @@ class _MyFlatPageState extends State<MyFlatPage> {
                             ),
                             WSecondaryButton(
                               title: 'Bayar Kos',
-                              onTap: () => NavigationService()
-                                  .router
-                                  .push(const PaymentRoute()),
+                              onTap: () async {
+                                final payment = await NavigationService()
+                                    .router
+                                    .push(
+                                        PaymentRoute(model: viewModel.model!));
+
+                                if (payment != null) {
+                                  viewModel.init();
+                                }
+                              },
                               fullWidth: false,
                             )
                           ],
