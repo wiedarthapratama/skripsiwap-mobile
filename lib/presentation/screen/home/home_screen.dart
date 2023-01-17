@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    context.read<MasterViewModel>().saveOrUpdateToken();
     super.initState();
   }
 
