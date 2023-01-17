@@ -221,13 +221,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Container(
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
-                                onTap: () async {
-                                  await StorageService.delete(
-                                      StorageKeyEnum.accessToken);
-                                  NavigationService()
-                                      .router
-                                      .push(const LoginRoute());
-                                },
+                                onTap: viewModel.showLogoutConfirm,
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.all(12),

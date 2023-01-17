@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
+import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class AuthRepository {
   Future<Either<WException, AuthModel>> login(
@@ -19,4 +20,6 @@ abstract class AuthRepository {
       required int subdistrictId,
       required int villageId,
       required String address});
+  Future<Either<WException, BaseResponse>> saveOrUpdateToken();
+  Future<Either<WException, BaseResponse>> logout();
 }

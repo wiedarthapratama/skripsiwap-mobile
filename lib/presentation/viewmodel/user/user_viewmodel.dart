@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:skripsi_wap/common/enum/enum.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
+import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
+import 'package:skripsi_wap/domain/repository/auth/auth_repository.dart';
 import 'package:skripsi_wap/domain/repository/user/user_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
+import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
+import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
+import 'package:skripsi_wap/service/storage_service.dart';
 import 'package:skripsi_wap/util/util.dart';
 
 class UserViewModel extends BaseViewModel {
   final UserRepository repository = Injection.locator<UserRepository>();
-
+  final AuthRepository authRepository = Injection.locator<AuthRepository>();
   final formKey = GlobalKey<FormState>();
   // ubah profile
   final TextEditingController namaController = TextEditingController();
@@ -127,5 +133,43 @@ class UserViewModel extends BaseViewModel {
 
   void init() {
     loadProfile();
+  }
+
+  void showLogoutConfirm() async {
+    final dialog = await WModal.show(context,
+        title: 'Konfirmasi',
+        message: 'Anda yakin akan keluar dari akun anda?',
+        button: Row(
+          children: [
+            Expanded(
+              child: WSecondaryButton(
+                  title: 'Batal',
+                  onTap: () => navigationService.router.popForced()),
+            ),
+            WSpacing.horizontal.size8,
+            Expanded(
+                child: WPrimaryButton(
+                    title: 'Keluar',
+                    onTap: () => navigationService.router.popForced(true)))
+          ],
+        ));
+
+    if (dialog == null) return;
+
+    isLoading = true;
+    final response = await authRepository.logout();
+    final failure = response.fold((l) => l, (r) => null);
+    final data = response.fold((l) => null, (r) => r);
+
+    if (response.isLeft()) {
+      isLoading = false;
+      failure!.showAlert();
+      return;
+    }
+
+    await WModal.show(context, title: 'Berhasil', message: data!.message);
+    isLoading = false;
+    await StorageService.delete(StorageKeyEnum.accessToken);
+    navigationService.router.push(const LoginRoute());
   }
 }

@@ -4,6 +4,7 @@ import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
+import 'package:skripsi_wap/service/firebase_service.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthModel> login({required String email, required String password});
@@ -20,6 +21,8 @@ abstract class AuthRemoteDataSource {
       required int subdistrictId,
       required int villageId,
       required String address});
+  Future<BaseResponse> saveOrUpdateToken();
+  Future<BaseResponse> logout();
 }
 
 class AuthRemoteDataSourceImpl extends RemoteDataSource
@@ -83,5 +86,26 @@ class AuthRemoteDataSourceImpl extends RemoteDataSource
         data: data, options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
     return result.isSuccess;
+  }
+
+  @override
+  Future<BaseResponse> saveOrUpdateToken() async {
+    final data = <String, dynamic>{
+      'fcm_id': await FirebaseService.instance.installationId,
+      'fcm_token': await FirebaseService.instance.token,
+    };
+
+    final response = await dio.post(ApiConstant.saveOrUpdateToken,
+        data: data, options: await baseOption);
+
+    return BaseResponse.fromJson(response.data);
+  }
+
+  @override
+  Future<BaseResponse> logout() async {
+    final response =
+        await dio.get(ApiConstant.logout, options: await baseOption);
+
+    return BaseResponse.fromJson(response.data);
   }
 }
