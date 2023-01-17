@@ -6,12 +6,10 @@ import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
-import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/presentation/widget/textfield/textfield.dart';
-import 'package:skripsi_wap/service/navigation_service.dart';
 
 class PengaduanScreen extends StatefulWidget {
   const PengaduanScreen({Key? key}) : super(key: key);

@@ -1,22 +1,13 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
-import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/data/model/kos/kos_saya_model.dart';
-import 'package:skripsi_wap/presentation/screen/payment/modal/modal.dart';
 import 'package:skripsi_wap/presentation/viewmodel/pembayaran/submit_pembayaran_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
-import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/presentation/widget/textfield/textfield.dart';
-import 'package:skripsi_wap/service/navigation_service.dart';
 import 'package:skripsi_wap/util/validator/validator.dart';
 
 class PaymentScreen extends StatefulWidget {

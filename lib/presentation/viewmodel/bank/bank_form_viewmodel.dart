@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
-import 'package:skripsi_wap/data/model/region/city_model.dart';
-import 'package:skripsi_wap/data/model/region/province_model.dart';
-import 'package:skripsi_wap/data/model/region/subdistrict_model.dart';
-import 'package:skripsi_wap/data/model/region/village_model.dart';
 import 'package:skripsi_wap/domain/repository/bank/bank_repository.dart';
-import 'package:skripsi_wap/domain/repository/pekerja/pekerja_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
-import 'package:skripsi_wap/presentation/widget/region/region.dart';
 import 'package:skripsi_wap/util/util.dart';
 
 class BankFormViewModel extends BaseViewModel {

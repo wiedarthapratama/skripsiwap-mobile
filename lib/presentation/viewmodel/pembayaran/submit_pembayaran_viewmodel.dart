@@ -7,12 +7,10 @@ import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/kos/kos_saya_model.dart';
 import 'package:skripsi_wap/data/model/master/bank_model.dart';
-import 'package:skripsi_wap/domain/repository/bank/bank_repository.dart';
 import 'package:skripsi_wap/domain/repository/pembayaran/pembayaran_repository.dart';
 import 'package:skripsi_wap/presentation/screen/payment/modal/modal.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
-import 'package:skripsi_wap/util/util.dart';
 
 class SubmitPembayaranViewModel extends BaseViewModel {
   final PembayaranRepository repository =
@@ -91,7 +89,7 @@ class SubmitPembayaranViewModel extends BaseViewModel {
     }
 
     isLoading = false;
-    navigationService.router.pop(true);
+    navigationService.router.popForced(true);
     WModal.show(context, title: 'Berhasil', message: data!.message);
   }
 }

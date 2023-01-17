@@ -5,7 +5,6 @@ import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
 import 'package:skripsi_wap/config/route.gr.dart';
 import 'package:skripsi_wap/data/model/kos/kos_foto_model.dart';
-import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
 import 'package:skripsi_wap/presentation/viewmodel/kos/kos_saya_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
