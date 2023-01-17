@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/data/data_source/pembayaran/remote_data_source.dart';
@@ -6,6 +8,7 @@ import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 import 'package:skripsi_wap/domain/repository/pembayaran/pembayaran_repository.dart';
+import 'package:skripsi_wap/util/util.dart';
 
 class PembayaranRepositoryImpl implements PembayaranRepository {
   final PembayaranRemoteDataSource remoteDataSource;
@@ -59,7 +62,7 @@ class PembayaranRepositoryImpl implements PembayaranRepository {
   Future<Either<WException, BaseResponse>> submitPembayaran(
       {required int idKost,
       required int idKostStok,
-      required String buktiBayar,
+      required File buktiBayar,
       required int jumlahBayar,
       required String namaRekening,
       required String namaBank,
@@ -75,9 +78,11 @@ class PembayaranRepositoryImpl implements PembayaranRepository {
           toIdBank: toIdBank);
 
       return Right(response);
-    } on DioError catch (e) {
+    } on DioError catch (e, __) {
+      debugLog('message', error: e, stackTrace: __);
       return Left(e.exception);
-    } catch (_) {
+    } catch (_, __) {
+      debugLog('message', error: _, stackTrace: __);
       return const Left(WException.internalServerException());
     }
   }

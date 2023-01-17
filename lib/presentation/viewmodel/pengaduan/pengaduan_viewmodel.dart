@@ -39,32 +39,4 @@ class PengaduanViewModel extends BaseViewModel {
     isLoading = false;
     notifyListeners();
   }
-
-  void _doSubmit(
-      {required int idKost,
-      required int idKostStok,
-      required String judul,
-      required String deskripsi,
-      required String fotoPengaduan}) async {
-    isLoading = true;
-
-    final response = await repository.submitPengaduan(
-        idKost: idKost,
-        idKostStok: idKostStok,
-        judul: judul,
-        deskripsi: deskripsi,
-        fotoPengaduan: fotoPengaduan);
-    final failure = response.fold((l) => l, (r) => null);
-    final data = response.fold((l) => null, (r) => r);
-
-    if (response.isLeft()) {
-      isLoading = false;
-      failure!.showAlert();
-      return;
-    }
-
-    await WModal.show(context, title: 'Berhasil', message: data!.message);
-    isLoading = false;
-    init();
-  }
 }

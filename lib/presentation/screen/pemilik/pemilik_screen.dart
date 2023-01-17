@@ -124,6 +124,21 @@ class _PemilikScreenState extends State<PemilikScreen> {
                     textAlign: TextAlign.center,
                   ),
                 ),
+              ),
+              InkWell(
+                onTap: () => NavigationService().router.push(const BankRoute()),
+                borderRadius: WRadius.size12,
+                child: Container(
+                  padding: const EdgeInsets.all(24),
+                  width: 1.sw,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: WColors.primary),
+                      borderRadius: WRadius.size12),
+                  child: const Text(
+                    'Data Bank',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               )
             ],
           ),

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/constant/constant.dart';
 import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
 import 'package:skripsi_wap/data/model/pembayaran/pembayaran_model.dart';
@@ -11,7 +14,7 @@ abstract class PembayaranRemoteDataSource {
   Future<BaseResponse> submitPembayaran(
       {required int idKost,
       required int idKostStok,
-      required String buktiBayar,
+      required File buktiBayar,
       required int jumlahBayar,
       required String namaRekening,
       required String namaBank,
@@ -60,7 +63,7 @@ class PembayaranRemoteDataSourceImpl extends RemoteDataSource
   Future<BaseResponse> submitPembayaran(
       {required int idKost,
       required int idKostStok,
-      required String buktiBayar,
+      required File buktiBayar,
       required int jumlahBayar,
       required String namaRekening,
       required String namaBank,
@@ -68,14 +71,15 @@ class PembayaranRemoteDataSourceImpl extends RemoteDataSource
     final data = {
       'id_kost': idKost,
       'id_kost_stok': idKostStok,
-      'bukti_bayar': buktiBayar,
+      'bukti_bayar': await MultipartFile.fromFile(buktiBayar.path),
       'jumlah_bayar': jumlahBayar,
       'nama_rekening': namaRekening,
       'nama_bank': namaBank,
       'to_id_bank': toIdBank
     };
+
     final response = await dio.post(ApiConstant.pembayaranSubmit,
-        data: data, options: await baseOption);
+        data: FormData.fromMap(data), options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
 
     return result;

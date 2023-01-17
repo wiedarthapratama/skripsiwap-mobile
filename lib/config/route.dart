@@ -6,6 +6,8 @@ import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
 import 'package:skripsi_wap/presentation/screen/notifikasi/notifikasi_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/payment/payment_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/bank/bank_form_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pemilik/bank/bank_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/calon_pengontrak/calon_pengontrak_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/kos/kos_form_screen.dart';
@@ -139,6 +141,14 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
       AutoRoute(
         path: CalonPengontrakScreen.name,
         page: CalonPengontrakScreen,
+      ),
+      AutoRoute(
+        path: BankScreen.name,
+        page: BankScreen,
+      ),
+      AutoRoute(
+        path: BankFormScreen.name,
+        page: BankFormScreen,
       ),
     ])
 class $AppRouter {}
