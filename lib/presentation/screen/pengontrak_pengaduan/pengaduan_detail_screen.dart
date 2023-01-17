@@ -36,86 +36,82 @@ class _PengontrakPengaduanDetailScreenState
                 return const Center(child: CircularProgressIndicator());
               }
 
-              return viewModel.dataPengaduan == null
-                  ? const Center(
-                      child: Text('Error'),
+              return Container(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Detail Pengaduan',
+                      style: WTextStyle.headline3.bold,
+                    ),
+                    WSpacing.vertical.size16,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Judul',
+                          style: WTextStyle.body2,
+                        ),
+                        WSpacing.horizontal.size8,
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPengaduan.judul,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Deskripsi',
+                          style: WTextStyle.body2,
+                        ),
+                        WSpacing.horizontal.size8,
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPengaduan.deskripsi,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Status Pengaduan',
+                          style: WTextStyle.body2,
+                        ),
+                        WSpacing.horizontal.size8,
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPengaduan.status,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Text(
+                      'Bukti Pelengkap',
+                      style: WTextStyle.body2,
+                    ),
+                    WSpacing.vertical.size6,
+                    WCacheImage(
+                      url: viewModel.dataPengaduan.fotoPengaduan,
+                      fit: BoxFit.cover,
                     )
-                  : Container(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Detail Pengaduan',
-                            style: WTextStyle.headline3.bold,
-                          ),
-                          WSpacing.vertical.size16,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Judul',
-                                style: WTextStyle.body2,
-                              ),
-                              WSpacing.horizontal.size8,
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPengaduan.judul,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Deskripsi',
-                                style: WTextStyle.body2,
-                              ),
-                              WSpacing.horizontal.size8,
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPengaduan.deskripsi,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Status Pengaduan',
-                                style: WTextStyle.body2,
-                              ),
-                              WSpacing.horizontal.size8,
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPengaduan.status,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Text(
-                            'Bukti Pelengkap',
-                            style: WTextStyle.body2,
-                          ),
-                          WSpacing.vertical.size6,
-                          WCacheImage(
-                            url: viewModel.dataPengaduan.fotoPengaduan,
-                            fit: BoxFit.cover,
-                          )
-                        ],
-                      ),
-                    );
+                  ],
+                ),
+              );
             })));
   }
 }

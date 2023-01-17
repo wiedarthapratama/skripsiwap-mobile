@@ -232,7 +232,7 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                         title: 'Ajukan Sewa',
                         onTap: () => NavigationService()
                             .router
-                            .push(const PendaftaranRoute()),
+                            .push(PendaftaranRoute(model: viewModel.model)),
                         fullWidth: false,
                       )
                     ]),
