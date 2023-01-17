@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:skripsi_wap/presentation/screen/auth/login/login_screen.dart';
 import 'package:skripsi_wap/presentation/screen/auth/register/register_screen.dart';
+import 'package:skripsi_wap/presentation/screen/berhasil/berhasil_screen.dart';
 import 'package:skripsi_wap/presentation/screen/daftar_pemilik/daftar_pemilik_screen.dart';
 import 'package:skripsi_wap/presentation/screen/home/home_screen.dart';
 import 'package:skripsi_wap/presentation/screen/notifikasi/notifikasi_screen.dart';
@@ -151,6 +152,10 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
       AutoRoute(
         path: BankFormScreen.name,
         page: BankFormScreen,
+      ),
+      AutoRoute(
+        path: BerhasilScreen.name,
+        page: BerhasilScreen,
       ),
     ])
 class $AppRouter {}

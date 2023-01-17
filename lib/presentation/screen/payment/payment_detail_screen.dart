@@ -34,103 +34,99 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              return viewModel.dataPembayaran == null
-                  ? const Center(
-                      child: Text('Tidak ada data'),
+              return Container(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Detail Pembayaran',
+                      style: WTextStyle.headline3.bold,
+                    ),
+                    WSpacing.vertical.size16,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Nama',
+                          style: WTextStyle.body2,
+                        ),
+                        WSpacing.horizontal.size8,
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPembayaran.namaRekening,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Dari Bank',
+                          style: WTextStyle.body2,
+                        ),
+                        WSpacing.horizontal.size8,
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPembayaran.namaBank,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Ke Bank',
+                          style: WTextStyle.body2,
+                        ),
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPembayaran.bank!.namaBank,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Status Pembayaran',
+                          style: WTextStyle.body2,
+                        ),
+                        WSpacing.horizontal.size8,
+                        Expanded(
+                          child: Text(
+                            viewModel.dataPembayaran.status,
+                            style: WTextStyle.body2.bold,
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      ],
+                    ),
+                    WSpacing.vertical.size8,
+                    Text(
+                      'Bukti Transfer',
+                      style: WTextStyle.body2,
+                    ),
+                    WSpacing.vertical.size6,
+                    WCacheImage(
+                      url: viewModel.dataPembayaran.buktiBayar,
+                      fit: BoxFit.cover,
                     )
-                  : Container(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Detail Pembayaran',
-                            style: WTextStyle.headline3.bold,
-                          ),
-                          WSpacing.vertical.size16,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Nama',
-                                style: WTextStyle.body2,
-                              ),
-                              WSpacing.horizontal.size8,
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPembayaran.namaRekening,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Dari Bank',
-                                style: WTextStyle.body2,
-                              ),
-                              WSpacing.horizontal.size8,
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPembayaran.namaBank,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Ke Bank',
-                                style: WTextStyle.body2,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPembayaran.bank!.namaBank,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Status Pembayaran',
-                                style: WTextStyle.body2,
-                              ),
-                              WSpacing.horizontal.size8,
-                              Expanded(
-                                child: Text(
-                                  viewModel.dataPembayaran.status,
-                                  style: WTextStyle.body2.bold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              )
-                            ],
-                          ),
-                          WSpacing.vertical.size8,
-                          Text(
-                            'Bukti Transfer',
-                            style: WTextStyle.body2,
-                          ),
-                          WSpacing.vertical.size6,
-                          WCacheImage(
-                            url: viewModel.dataPembayaran.buktiBayar,
-                            fit: BoxFit.cover,
-                          )
-                        ],
-                      ),
-                    );
+                  ],
+                ),
+              );
             })));
   }
 }
