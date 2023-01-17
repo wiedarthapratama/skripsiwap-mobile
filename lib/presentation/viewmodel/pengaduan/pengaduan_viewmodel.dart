@@ -3,7 +3,6 @@ import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/pengaduan/pengaduan_model.dart';
 import 'package:skripsi_wap/domain/repository/pengaduan/pengaduan_repository.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
-import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
 
 class PengaduanViewModel extends BaseViewModel {
   final PengaduanRepository repository =

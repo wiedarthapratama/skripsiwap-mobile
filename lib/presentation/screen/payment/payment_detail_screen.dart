@@ -36,7 +36,7 @@ class _PaymentDetailScreenState extends State<PaymentDetailScreen> {
 
               return viewModel.dataPembayaran == null
                   ? const Center(
-                      child: Text('Error'),
+                      child: Text('Tidak ada data'),
                     )
                   : Container(
                       padding: const EdgeInsets.all(12),

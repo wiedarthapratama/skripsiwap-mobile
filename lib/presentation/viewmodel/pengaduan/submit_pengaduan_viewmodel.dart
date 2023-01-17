@@ -6,9 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/config/injection.dart';
 import 'package:skripsi_wap/data/model/kos/kos_saya_model.dart';
-import 'package:skripsi_wap/data/model/master/bank_model.dart';
 import 'package:skripsi_wap/domain/repository/pengaduan/pengaduan_repository.dart';
-import 'package:skripsi_wap/presentation/screen/payment/modal/modal.dart';
 import 'package:skripsi_wap/presentation/viewmodel/base_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
 

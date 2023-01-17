@@ -51,7 +51,7 @@ class _MyFlatPageState extends State<MyFlatPage> {
 
           return viewModel.model == null
               ? const Center(
-                  child: Text('Error'),
+                  child: Text('Tidak ada data'),
                 )
               : SingleChildScrollView(
                   child: Padding(

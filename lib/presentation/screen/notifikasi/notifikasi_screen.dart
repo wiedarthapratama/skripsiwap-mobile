@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/config/colors.gen.dart';
+import 'package:skripsi_wap/presentation/viewmodel/notifikasi/notifikasi_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 
 class NotifikasiScreen extends StatefulWidget {
@@ -21,92 +23,58 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
         title: 'Aplikasi',
         elevation: .2,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(12),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               'Notifikasi',
               style: WTextStyle.headline3.bold,
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 12),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(12),
-                  decoration:
-                      BoxDecoration(border: Border.all(color: WColors.primary)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Notifikasi 1',
-                        style: WTextStyle.subtitle1.bold,
-                      ),
-                      Text(
-                        'Ini adalah deskripsi dari notifikasi 1',
-                        style: WTextStyle.subtitle2,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 12),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(12),
-                  decoration:
-                      BoxDecoration(border: Border.all(color: WColors.primary)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Notifikasi 2',
-                        style: WTextStyle.subtitle1.bold,
-                      ),
-                      Text(
-                        'Ini adalah deskripsi dari notifikasi 2',
-                        style: WTextStyle.subtitle2,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 12),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(12),
-                  decoration:
-                      BoxDecoration(border: Border.all(color: WColors.primary)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Notifikasi 3',
-                        style: WTextStyle.subtitle1.bold,
-                      ),
-                      Text(
-                        'Ini adalah deskripsi dari notifikasi 3',
-                        style: WTextStyle.subtitle2,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+            Expanded(
+              child: ChangeNotifierProvider<NotifikasiViewModel>(
+                  create: (_) => NotifikasiViewModel()..init(),
+                  child: Consumer<NotifikasiViewModel>(
+                      builder: (_, viewModel, __) => viewModel.isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: viewModel.data.length,
+                              itemBuilder: (_, position) {
+                                var data = viewModel.data[position];
+                                return Container(
+                                  margin: const EdgeInsets.only(top: 12),
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: WColors.primary)),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            data.judul,
+                                            style: WTextStyle.subtitle1.bold,
+                                          ),
+                                          Text(
+                                            data.deskripsi,
+                                            style: WTextStyle.subtitle2,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }))),
             ),
           ],
         ),

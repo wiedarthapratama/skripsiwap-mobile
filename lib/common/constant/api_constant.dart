@@ -48,4 +48,7 @@ class ApiConstant {
   //! BANK PENYEDIA
   static String get bank => 'api/bank';
   static String get bankPemilik => 'api/bank/id-pemilik';
+
+  //! NOTIFIKASI
+  static String get notifikasi => 'api/notifikasi';
 }

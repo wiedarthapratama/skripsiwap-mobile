@@ -38,7 +38,7 @@ class _PengontrakPengaduanDetailScreenState
 
               return viewModel.dataPengaduan == null
                   ? const Center(
-                      child: Text('Error'),
+                      child: Text('Tidak ada data'),
                     )
                   : Container(
                       padding: const EdgeInsets.all(12),

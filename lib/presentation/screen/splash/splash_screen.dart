@@ -31,7 +31,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Skripshit by wied'),
+        child: Text(
+          'Tugas Akhir \n Wied Artha Pratama',
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
