@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/extension/extension.dart';
 import 'package:skripsi_wap/data/data_source/pengaduan/remote_data_source.dart';
@@ -76,7 +78,7 @@ class PengaduanRepositoryImpl implements PengaduanRepository {
       required int idKostStok,
       required String judul,
       required String deskripsi,
-      required String fotoPengaduan}) async {
+      required File fotoPengaduan}) async {
     try {
       final response = await remoteDataSource.submitPengaduan(
           idKost: idKost,

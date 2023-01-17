@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:skripsi_wap/common/constant/constant.dart';
 import 'package:skripsi_wap/data/data_source/remote_data_source.dart';
 import 'package:skripsi_wap/data/model/pengaduan/pengaduan_model.dart';
@@ -16,7 +19,7 @@ abstract class PengaduanRemoteDataSource {
       required int idKostStok,
       required String judul,
       required String deskripsi,
-      required String fotoPengaduan});
+      required File fotoPengaduan});
 }
 
 class PengaduanRemoteDataSourceImpl extends RemoteDataSource
@@ -77,16 +80,16 @@ class PengaduanRemoteDataSourceImpl extends RemoteDataSource
       required int idKostStok,
       required String judul,
       required String deskripsi,
-      required String fotoPengaduan}) async {
+      required File fotoPengaduan}) async {
     final data = {
       'id_kost': idKost,
       'id_kost_stok': idKostStok,
       'judul': judul,
       'deskripsi': deskripsi,
-      'foto_pengaduan': fotoPengaduan
+      'foto_pengaduan': await MultipartFile.fromFile(fotoPengaduan.path)
     };
     final response = await dio.post(ApiConstant.pengaduanSubmit,
-        data: data, options: await baseOption);
+        data: FormData.fromMap(data), options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
 
     return result;

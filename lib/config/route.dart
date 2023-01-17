@@ -21,6 +21,8 @@ import 'package:skripsi_wap/presentation/screen/pemilik/pemilik_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pengaduan/pengaduan_detail_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pengaduan/pengaduan_screen.dart';
 import 'package:skripsi_wap/presentation/screen/pemilik/pengontrak/pengontrak_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pengontrak_pengaduan/pengaduan_detail_screen.dart';
+import 'package:skripsi_wap/presentation/screen/pengontrak_pengaduan/pengaduan_screen.dart';
 import 'package:skripsi_wap/presentation/screen/splash/splash_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_password/ubah_password_screen.dart';
 import 'package:skripsi_wap/presentation/screen/ubah_profile/ubah_profile_screen.dart';
@@ -58,14 +60,14 @@ import 'package:skripsi_wap/presentation/screen/pendaftaran/pendaftaran_screen.d
         path: PaymentDetailScreen.name,
         page: PaymentDetailScreen,
       ),
-      /* AutoRoute(
-        path: pengaduan.PengaduanScreen.name,
-        page: pengaduan.PengaduanScreen,
+      AutoRoute(
+        path: PengontrakPengaduanScreen.name,
+        page: PengontrakPengaduanScreen,
       ),
       AutoRoute(
-        path: pengaduan_detail.PengaduanDetailScreen.name,
-        page: pengaduan_detail.PengaduanDetailScreen,
-      ), */
+        path: PengontrakPengaduanDetailScreen.name,
+        page: PengontrakPengaduanDetailScreen,
+      ),
       AutoRoute(
         path: UbahProfileScreen.name,
         page: UbahProfileScreen,

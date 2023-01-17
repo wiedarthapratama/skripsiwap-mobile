@@ -7,18 +7,21 @@ import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/image/image.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 
-class PengaduanDetailScreen extends StatefulWidget {
-  const PengaduanDetailScreen({Key? key, required this.id}) : super(key: key);
+class PengontrakPengaduanDetailScreen extends StatefulWidget {
+  const PengontrakPengaduanDetailScreen({Key? key, required this.id})
+      : super(key: key);
 
-  static const String name = 'PengaduanDetailScreen';
+  static const String name = 'PengontrakPengaduanDetailScreen';
 
   final int id;
 
   @override
-  State<PengaduanDetailScreen> createState() => _PengaduanDetailScreenState();
+  State<PengontrakPengaduanDetailScreen> createState() =>
+      _PengontrakPengaduanDetailScreenState();
 }
 
-class _PengaduanDetailScreenState extends State<PengaduanDetailScreen> {
+class _PengontrakPengaduanDetailScreenState
+    extends State<PengontrakPengaduanDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

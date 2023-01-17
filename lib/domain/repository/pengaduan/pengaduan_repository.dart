@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/pengaduan/pengaduan_model.dart';
@@ -18,5 +20,5 @@ abstract class PengaduanRepository {
       required int idKostStok,
       required String judul,
       required String deskripsi,
-      required String fotoPengaduan});
+      required File fotoPengaduan});
 }
