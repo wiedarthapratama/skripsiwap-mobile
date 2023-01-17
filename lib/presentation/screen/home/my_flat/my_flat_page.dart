@@ -167,10 +167,13 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                                 ],
                                               ),
                                             ),
-                                            const Icon(
-                                              Icons.check,
-                                              color: WColors.accient,
-                                            )
+                                            Expanded(
+                                              child: Text(
+                                                model.status,
+                                                style: WTextStyle.body2,
+                                                textAlign: TextAlign.right,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -251,10 +254,13 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                                 ],
                                               ),
                                             ),
-                                            const Icon(
-                                              Icons.check,
-                                              color: WColors.accient,
-                                            )
+                                            Expanded(
+                                              child: Text(
+                                                model.status,
+                                                style: WTextStyle.body2,
+                                                textAlign: TextAlign.right,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),

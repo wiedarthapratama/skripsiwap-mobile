@@ -69,6 +69,13 @@ class _PengaduanScreenState extends State<PengaduanScreen> {
                                           style: WTextStyle.headline3.semiBold,
                                         ),
                                       ),
+                                      Expanded(
+                                        child: Text(
+                                          model.status,
+                                          style: WTextStyle.body2,
+                                          textAlign: TextAlign.right,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   WSpacing.vertical.size6,
