@@ -2,11 +2,13 @@ part of 'constant.dart';
 
 class ApiConstant {
   static String get login => 'api/login';
+  static String get logout => 'api/logout';
   static String get register => 'api/register';
   static String get refreshToken => 'api/refresh';
   static String get profile => 'api/profile';
   static String get ubahProfile => 'api/profile/update';
   static String get ubahPassword => 'api/profile/password';
+  static String get saveOrUpdateToken => 'api/firebase/create-or-update-token';
 
   //! PENGONTRAK
   static String get pengontrakHome => 'api/pengontrak/home';

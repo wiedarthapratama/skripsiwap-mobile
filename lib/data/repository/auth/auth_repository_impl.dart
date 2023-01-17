@@ -5,6 +5,7 @@ import 'package:skripsi_wap/data/data_source/auth/remote_data_source.dart';
 import 'package:skripsi_wap/data/exception/exception.dart';
 import 'package:skripsi_wap/data/model/auth/auth_model.dart';
 import 'package:skripsi_wap/data/model/user/user_model.dart';
+import 'package:skripsi_wap/data/response/base_response.dart';
 import 'package:skripsi_wap/domain/repository/auth/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -77,6 +78,32 @@ class AuthRepositoryImpl implements AuthRepository {
           subdistrictId: subdistrictId,
           villageId: villageId,
           address: address);
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, BaseResponse>> saveOrUpdateToken() async {
+    try {
+      final response = await remoteDataSource.saveOrUpdateToken();
+
+      return Right(response);
+    } on DioError catch (e) {
+      return Left(e.exception);
+    } catch (_) {
+      return const Left(WException.internalServerException());
+    }
+  }
+
+  @override
+  Future<Either<WException, BaseResponse>> logout() async {
+    try {
+      final response = await remoteDataSource.logout();
 
       return Right(response);
     } on DioError catch (e) {
