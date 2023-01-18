@@ -29,117 +29,115 @@ class _PemilikScreenState extends State<PemilikScreen> {
           child: Wrap(
             runSpacing: 12,
             children: [
-              InkWell(
-                onTap: () => NavigationService().router.push(const KosRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Data Kost',
-                    textAlign: TextAlign.center,
+              Card(
+                elevation: 10,
+                child: InkWell(
+                  onTap: () =>
+                      NavigationService().router.push(const KosRoute()),
+                  borderRadius: WRadius.size12,
+                  child: Container(
+                    padding: const EdgeInsets.all(24),
+                    width: 1.sw,
+                    child: const Text(
+                      'Data Kost',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () =>
-                    NavigationService().router.push(const PekerjaRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Data Pekerja',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () =>
-                    NavigationService().router.push(const PengontrakRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Data Pengontrak',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () =>
-                    NavigationService().router.push(const PengaduanRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Data Pengaduan',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () =>
-                    NavigationService().router.push(const PembayaranRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Data Pembayaran',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () => NavigationService()
-                    .router
-                    .push(const CalonPengontrakRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Calon Pengontrak',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () => NavigationService().router.push(const BankRoute()),
-                borderRadius: WRadius.size12,
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: WColors.primary),
-                      borderRadius: WRadius.size12),
-                  child: const Text(
-                    'Data Bank',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              )
+              Card(
+                  elevation: 10,
+                  child: InkWell(
+                    onTap: () =>
+                        NavigationService().router.push(const PekerjaRoute()),
+                    borderRadius: WRadius.size12,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      width: 1.sw,
+                      child: const Text(
+                        'Data Pekerja',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )),
+              Card(
+                  elevation: 10,
+                  child: InkWell(
+                    onTap: () => NavigationService()
+                        .router
+                        .push(const PengontrakRoute()),
+                    borderRadius: WRadius.size12,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      width: 1.sw,
+                      child: const Text(
+                        'Data Pengontrak',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )),
+              Card(
+                  elevation: 10,
+                  child: InkWell(
+                    onTap: () =>
+                        NavigationService().router.push(const PengaduanRoute()),
+                    borderRadius: WRadius.size12,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      width: 1.sw,
+                      child: const Text(
+                        'Data Pengaduan',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )),
+              Card(
+                  elevation: 10,
+                  child: InkWell(
+                    onTap: () => NavigationService()
+                        .router
+                        .push(const PembayaranRoute()),
+                    borderRadius: WRadius.size12,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      width: 1.sw,
+                      child: const Text(
+                        'Data Pembayaran',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )),
+              Card(
+                  elevation: 10,
+                  child: InkWell(
+                    onTap: () => NavigationService()
+                        .router
+                        .push(const CalonPengontrakRoute()),
+                    borderRadius: WRadius.size12,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      width: 1.sw,
+                      child: const Text(
+                        'Calon Pengontrak',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )),
+              Card(
+                  elevation: 10,
+                  child: InkWell(
+                    onTap: () =>
+                        NavigationService().router.push(const BankRoute()),
+                    borderRadius: WRadius.size12,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      width: 1.sw,
+                      child: const Text(
+                        'Data Bank',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ))
             ],
           ),
         ),

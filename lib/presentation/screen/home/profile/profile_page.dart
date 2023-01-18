@@ -96,7 +96,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             WSpacing.vertical.size8,
                             viewModel.user?.isPemilik ?? false
-                                ? Container(
+                                ? Card(
+                                    elevation: 10,
                                     margin: const EdgeInsets.only(top: 12),
                                     child: InkWell(
                                       onTap: () => NavigationService()
@@ -105,9 +106,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                       child: Container(
                                         width: double.infinity,
                                         padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: WColors.primary)),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -126,7 +124,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                   )
-                                : Container(
+                                : Card(
+                                    elevation: 10,
                                     margin: const EdgeInsets.only(top: 12),
                                     child: InkWell(
                                       onTap: () => NavigationService()
@@ -135,9 +134,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                       child: Container(
                                         width: double.infinity,
                                         padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: WColors.primary)),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -156,7 +152,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                   ),
-                            Container(
+                            Card(
+                              elevation: 10,
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: () => NavigationService()
@@ -165,9 +162,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: WColors.primary)),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -186,7 +180,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                             ),
-                            Container(
+                            Card(
+                              elevation: 10,
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: () => NavigationService()
@@ -195,9 +190,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: WColors.primary)),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -216,16 +208,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                             ),
-                            Container(
+                            Card(
+                              elevation: 10,
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: viewModel.showLogoutConfirm,
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: WColors.primary)),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

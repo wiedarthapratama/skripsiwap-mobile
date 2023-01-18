@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <color name="primary" type="material">#2F2F2F</color>
+    <color name="primary" type="material">#273c75</color>
     <color name="success">#27BE48</color>
     <color name="error">#F64358</color>
     <color name="warning">#F89017</color>
@@ -21,4 +21,6 @@
     <color name="borderPin">#EAEAEA</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="megaman">#ffc048</color>
+    <color name="bg">#f5f6fa</color>
 </resources>

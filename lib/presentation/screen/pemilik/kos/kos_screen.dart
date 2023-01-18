@@ -67,89 +67,93 @@ class _KosScreenState extends State<KosScreen> {
                     itemBuilder: (_, position) {
                       final model = viewModel.data[position];
 
-                      return Container(
-                        margin:
-                            const EdgeInsets.only(top: 12, right: 16, left: 16),
-                        decoration: BoxDecoration(
-                            color: WColors.white,
-                            borderRadius: WRadius.size6,
-                            boxShadow: [wShadowCard]),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () => NavigationService()
-                                .router
-                                .push(KosDetailRoute(id: model.id)),
-                            borderRadius: WRadius.size6,
-                            child: Container(
-                              padding: const EdgeInsets.all(12),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          model.judul,
-                                          style: WTextStyle.headline3.semiBold,
+                      return Card(
+                        elevation: 10,
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                              top: 12, right: 16, left: 16),
+                          decoration: BoxDecoration(
+                              color: WColors.white,
+                              borderRadius: WRadius.size6,
+                              boxShadow: [wShadowCard]),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () => NavigationService()
+                                  .router
+                                  .push(KosDetailRoute(id: model.id)),
+                              borderRadius: WRadius.size6,
+                              child: Container(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            model.judul,
+                                            style:
+                                                WTextStyle.headline3.semiBold,
+                                          ),
                                         ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              onTap: () async {
-                                                final add =
-                                                    await NavigationService()
-                                                        .router
-                                                        .push(KosFormRoute(
-                                                            idKos: model.id));
+                                        Row(
+                                          children: [
+                                            Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  final add =
+                                                      await NavigationService()
+                                                          .router
+                                                          .push(KosFormRoute(
+                                                              idKos: model.id));
 
-                                                if (add != null) {
-                                                  viewModel.init();
-                                                }
-                                              },
-                                              borderRadius:
-                                                  WRadius.circular(50),
-                                              child: const Padding(
-                                                padding: EdgeInsets.all(4),
-                                                child: Icon(
-                                                  Icons.edit,
-                                                  size: 16,
+                                                  if (add != null) {
+                                                    viewModel.init();
+                                                  }
+                                                },
+                                                borderRadius:
+                                                    WRadius.circular(50),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(4),
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          WSpacing.horizontal.size4,
-                                          Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              onTap: () =>
-                                                  viewModel.onDelete(model),
-                                              borderRadius:
-                                                  WRadius.circular(50),
-                                              child: const Padding(
-                                                padding: EdgeInsets.all(4),
-                                                child: Icon(
-                                                  Icons.delete,
-                                                  size: 16,
+                                            WSpacing.horizontal.size4,
+                                            Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                onTap: () =>
+                                                    viewModel.onDelete(model),
+                                                borderRadius:
+                                                    WRadius.circular(50),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(4),
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                    size: 16,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  WSpacing.vertical.size6,
-                                  Text(
-                                    model.alamat,
-                                    style: WTextStyle.body2,
-                                  ),
-                                ],
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    WSpacing.vertical.size6,
+                                    Text(
+                                      model.alamat,
+                                      style: WTextStyle.body2,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

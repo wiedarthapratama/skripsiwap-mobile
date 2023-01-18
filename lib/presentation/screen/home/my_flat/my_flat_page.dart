@@ -131,7 +131,8 @@ class _MyFlatPageState extends State<MyFlatPage> {
                           itemBuilder: (_, position) {
                             final model =
                                 viewModel.model!.dataPembayaran[position];
-                            return Container(
+                            return Card(
+                              elevation: 10,
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: () => NavigationService()
@@ -139,9 +140,6 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                     .push(PaymentDetailRoute(id: model.id)),
                                 child: Container(
                                   padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: WColors.primary)),
                                   child: Row(
                                     children: [
                                       Expanded(
@@ -218,7 +216,8 @@ class _MyFlatPageState extends State<MyFlatPage> {
                             final model =
                                 viewModel.model!.dataPengaduan[position];
 
-                            return Container(
+                            return Card(
+                              elevation: 10,
                               margin: const EdgeInsets.only(top: 12),
                               child: InkWell(
                                 onTap: () => NavigationService().router.push(
@@ -226,9 +225,6 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                         id: model.id)),
                                 child: Container(
                                   padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: WColors.primary)),
                                   child: Row(
                                     children: [
                                       Expanded(

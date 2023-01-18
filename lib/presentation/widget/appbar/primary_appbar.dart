@@ -26,7 +26,7 @@ class WPrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
           const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
       backgroundColor: WColors.white,
       iconTheme: ThemeData.light().iconTheme,
-      elevation: elevation ?? 4,
+      // elevation: elevation ?? 4,
       leading: _leading(context),
       centerTitle: false,
       bottom: bottom,

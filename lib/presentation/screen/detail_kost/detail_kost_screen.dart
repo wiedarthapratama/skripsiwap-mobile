@@ -9,6 +9,7 @@ import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/service/navigation_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/colors.gen.dart';
 import '../../../config/route.gr.dart';
@@ -61,7 +62,7 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              viewModel.model.kos?.judul ?? '',
+                              '${viewModel.model.kos!.judul} - ${viewModel.model.namaTipe}',
                               style: WTextStyle.headline3.semiBold,
                             ),
                             const Icon(Icons.map),
@@ -212,6 +213,35 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                                     ),
                                   )),
                         ),
+                        WSpacing.vertical.size8,
+                        Text(
+                          'Pemilik',
+                          style: WTextStyle.body1.bold,
+                        ),
+                        ListTile(
+                          onTap: () async {
+                            var whatsapp =
+                                viewModel.model.kos!.pemilik!.user.nohp;
+                            whatsapp = whatsapp.substring(0, 1);
+                            print(whatsapp);
+                            // var whatsappAndroid = Uri.parse(
+                            //     "whatsapp://send?phone=$whatsapp&text=hello");
+                            // if (await canLaunchUrl(whatsappAndroid)) {
+                            //   await launchUrl(whatsappAndroid);
+                            // } else {
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     const SnackBar(
+                            //       content: Text(
+                            //           "WhatsApp is not installed on the device"),
+                            //     ),
+                            //   );
+                            // }
+                          },
+                          leading: const Icon(Icons.person),
+                          title: Text(viewModel.model.kos!.pemilik!.user.name),
+                          subtitle:
+                              Text(viewModel.model.kos!.pemilik!.user.nohp),
+                        )
                       ],
                     ),
                   ),
