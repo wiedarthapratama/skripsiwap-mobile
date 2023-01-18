@@ -49,11 +49,15 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
                                 return Container(
                                   margin: const EdgeInsets.only(top: 12),
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () =>
+                                        viewModel.onRead(data, position),
                                     child: Container(
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(12),
                                       decoration: BoxDecoration(
+                                          color: data.isRead == 0
+                                              ? WColors.black.withOpacity(.05)
+                                              : null,
                                           border: Border.all(
                                               color: WColors.primary)),
                                       child: Column(

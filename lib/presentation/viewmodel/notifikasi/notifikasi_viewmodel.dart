@@ -18,4 +18,12 @@ class NotifikasiViewModel extends BaseViewModel {
     isLoading = false;
     notifyListeners();
   }
+
+  void onRead(NotifikasiModel model, int position) async {
+    final response = await repository.readNotification(id: model.id);
+    final data = response.fold((l) => false, (r) => r.status);
+
+    this.data[position] = model.copyWith(isRead: data ? 1 : 0);
+    notifyListeners();
+  }
 }

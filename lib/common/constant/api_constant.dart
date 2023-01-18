@@ -53,6 +53,8 @@ class ApiConstant {
 
   //! NOTIFIKASI
   static String get notifikasi => 'api/notifikasi';
+  static String get notifikasiCount => 'api/notifikasi/count';
+  static String get notifikasiRead => 'api/notifikasi/read';
 
   // PENDAFTARAN
   static String get pendaftaranSubmit => 'api/pengontrak/pendaftaran';
