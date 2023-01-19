@@ -97,6 +97,7 @@ class HomeViewModel extends BaseViewModel {
     _selectedVillage = null;
     notifyListeners();
     onSearchSend();
+    // sip
   }
 
   void onTapProvince() async {
