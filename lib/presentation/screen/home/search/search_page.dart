@@ -81,7 +81,9 @@ class _SearchPageState extends State<SearchPage> {
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        viewModel.onSearchModal();
+                      },
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Icon(Icons.filter_alt_rounded),
@@ -90,8 +92,12 @@ class _SearchPageState extends State<SearchPage> {
                     Expanded(
                       child: Container(
                         margin: const EdgeInsets.only(right: 8),
-                        child: const WPrimaryTextField(
+                        child: WPrimaryTextField(
                           hint: 'Pencarian',
+                          controller: viewModel.namaController,
+                          onSubmit: (val) async {
+                            viewModel.onSearchSend();
+                          },
                         ),
                       ),
                     ),

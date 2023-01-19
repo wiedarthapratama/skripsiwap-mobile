@@ -19,9 +19,20 @@ class KosRepositoryImpl implements KosRepository {
   KosRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<WException, List<KosHomeModel>>> getRecommendation() async {
+  Future<Either<WException, List<KosHomeModel>>> getRecommendation({
+    required String nama,
+    required int provinceId,
+    required int cityId,
+    required int subdistrictId,
+    required int villageId,
+  }) async {
     try {
-      final response = await remoteDataSource.getRecommendation();
+      final response = await remoteDataSource.getRecommendation(
+          nama: nama,
+          provinceId: provinceId,
+          cityId: cityId,
+          subdistrictId: subdistrictId,
+          villageId: villageId);
 
       return Right(response);
     } on DioError catch (e) {

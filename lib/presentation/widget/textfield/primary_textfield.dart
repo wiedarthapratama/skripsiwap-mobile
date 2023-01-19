@@ -19,7 +19,8 @@ class WPrimaryTextField extends StatelessWidget {
       this.suffix,
       this.onTap,
       this.onTapSuffix,
-      this.validator});
+      this.validator,
+      this.onSubmit});
 
   final String? label;
   final String? hint;
@@ -42,12 +43,14 @@ class WPrimaryTextField extends StatelessWidget {
   final VoidCallback? onTapSuffix;
   final VoidCallback? onTap;
   final FormFieldValidator<String>? validator;
+  final Function(String)? onSubmit;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: TextFormField(
+        onFieldSubmitted: onSubmit,
         enabled: enable,
         obscureText: textFieldType == WTextFieldType.defaultType
             ? isSecure
