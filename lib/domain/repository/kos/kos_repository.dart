@@ -9,7 +9,13 @@ import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRepository {
-  Future<Either<WException, List<KosHomeModel>>> getRecommendation();
+  Future<Either<WException, List<KosHomeModel>>> getRecommendation({
+    required String nama,
+    required int provinceId,
+    required int cityId,
+    required int subdistrictId,
+    required int villageId,
+  });
   Future<Either<WException, List<KosModel>>> getListKos();
   Future<Either<WException, KosTipeModel>> getPengontrakDetailKos(
       {required int idKosTipe});

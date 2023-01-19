@@ -10,7 +10,13 @@ import 'package:skripsi_wap/data/model/kos/kos_tipe_model.dart';
 import 'package:skripsi_wap/data/response/base_response.dart';
 
 abstract class KosRemoteDataSource {
-  Future<List<KosHomeModel>> getRecommendation();
+  Future<List<KosHomeModel>> getRecommendation({
+    required String nama,
+    required int provinceId,
+    required int cityId,
+    required int subdistrictId,
+    required int villageId,
+  });
   Future<List<KosModel>> getListKos();
   Future<KosTipeModel> getPengontrakDetailKos({required int idKosTipe});
   Future<KosModel> getDetailKos({required int idKos});
@@ -69,9 +75,22 @@ abstract class KosRemoteDataSource {
 class KosRemoteDataSourceImpl extends RemoteDataSource
     implements KosRemoteDataSource {
   @override
-  Future<List<KosHomeModel>> getRecommendation() async {
-    final response =
-        await dio.post(ApiConstant.pengontrakHome, options: await baseOption);
+  Future<List<KosHomeModel>> getRecommendation({
+    required String nama,
+    required int provinceId,
+    required int cityId,
+    required int subdistrictId,
+    required int villageId,
+  }) async {
+    final data = {
+      'nama': nama,
+      'id_provinsi': provinceId,
+      'id_kabupaten': cityId,
+      'id_kecamatan': subdistrictId,
+      'id_desa': villageId,
+    };
+    final response = await dio.post(ApiConstant.pengontrakHome,
+        data: data, options: await baseOption);
     final result = BaseResponse.fromJson(response.data);
     return (result.data as List)
         .map((e) => KosHomeModel.fromJson(e))
