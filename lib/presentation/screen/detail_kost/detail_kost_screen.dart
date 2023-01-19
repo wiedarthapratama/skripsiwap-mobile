@@ -7,8 +7,11 @@ import 'package:skripsi_wap/common/style/style.dart';
 import 'package:skripsi_wap/presentation/viewmodel/kos/detail_kos_viewmodel.dart';
 import 'package:skripsi_wap/presentation/widget/appbar/appbar.dart';
 import 'package:skripsi_wap/presentation/widget/button/button.dart';
+import 'package:skripsi_wap/presentation/widget/modal/modal.dart';
 import 'package:skripsi_wap/presentation/widget/spacing/spacing.dart';
 import 'package:skripsi_wap/service/navigation_service.dart';
+import 'package:skripsi_wap/util/validator/validator.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../config/colors.gen.dart';
 import '../../../config/route.gr.dart';
@@ -64,7 +67,39 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                               viewModel.model.kos?.judul ?? '',
                               style: WTextStyle.headline3.semiBold,
                             ),
-                            const Icon(Icons.map),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () async {
+                                      if (!await launchUrlString(
+                                          'whatsapp://send?phone=${viewModel.model.kos?.pemilik?.user?.phoneInternational}')) {
+                                        WModal.show(context,
+                                            title: 'Gagal',
+                                            message:
+                                                'Whatsapp tidak terinstall');
+                                      }
+                                    },
+                                    child: const Icon(Icons.whatsapp),
+                                  ),
+                                  if (viewModel.model.kos?.linkMaps != null &&
+                                      (viewModel.model.kos?.linkMaps ?? '')
+                                          .validateUrl)
+                                    Row(
+                                      children: [
+                                        WSpacing.horizontal.size6,
+                                        InkWell(
+                                            onTap: () => launchUrlString(
+                                                viewModel.model.kos!.linkMaps!,
+                                                mode: LaunchMode
+                                                    .externalApplication),
+                                            child: const Icon(Icons.map))
+                                      ],
+                                    ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         if (viewModel.model.isRumah == 1)

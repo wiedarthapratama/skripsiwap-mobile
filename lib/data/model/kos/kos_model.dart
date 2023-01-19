@@ -4,6 +4,7 @@ import 'package:skripsi_wap/data/model/region/city_model.dart';
 import 'package:skripsi_wap/data/model/region/province_model.dart';
 import 'package:skripsi_wap/data/model/region/subdistrict_model.dart';
 import 'package:skripsi_wap/data/model/region/village_model.dart';
+import 'package:skripsi_wap/data/model/user/user_pemilik_model.dart';
 
 part 'kos_model.freezed.dart';
 part 'kos_model.g.dart';
@@ -33,6 +34,7 @@ class KosModel with _$KosModel {
       CityModel? kabupaten,
       SubdistrictModel? kecamatan,
       VillageModel? desa,
+      UserPemilikModel? pemilik,
       @JsonKey(name: 'tipe')
       @Default(<KosTipeModel>[])
           List<KosTipeModel> dataTipe}) = _KosModel;

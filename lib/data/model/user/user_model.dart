@@ -5,6 +5,7 @@ part 'user_model.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
+  const UserModel._();
   factory UserModel(
           {required int id,
           required String name,
@@ -18,4 +19,6 @@ class UserModel with _$UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> data) =>
       _$UserModelFromJson(data);
+
+  String get phoneInternational => nohp.replaceFirst('08', '628');
 }

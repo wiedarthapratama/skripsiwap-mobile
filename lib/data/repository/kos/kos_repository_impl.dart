@@ -102,7 +102,8 @@ class KosRepositoryImpl implements KosRepository {
           cityId: cityId,
           subdistrictId: subdistrictId,
           villageId: villageId,
-          address: address);
+          address: address,
+          urlGoogleMap: urlGoogleMap);
 
       return Right(response);
     } on DioError catch (e) {
@@ -113,16 +114,17 @@ class KosRepositoryImpl implements KosRepository {
   }
 
   @override
-  Future<Either<WException, BaseResponse>> updateKos(
-      {required String idKos,
-      required String title,
-      required String description,
-      required int provinceId,
-      required int cityId,
-      required int subdistrictId,
-      required int villageId,
-      required String address,
-      String? urlGoogleMap}) async {
+  Future<Either<WException, BaseResponse>> updateKos({
+    required String idKos,
+    required String title,
+    required String description,
+    required int provinceId,
+    required int cityId,
+    required int subdistrictId,
+    required int villageId,
+    required String address,
+    String? urlGoogleMap,
+  }) async {
     try {
       final response = await remoteDataSource.updateKos(
           idKos: idKos,
@@ -132,7 +134,8 @@ class KosRepositoryImpl implements KosRepository {
           cityId: cityId,
           subdistrictId: subdistrictId,
           villageId: villageId,
-          address: address);
+          address: address,
+          urlGoogleMap: urlGoogleMap);
 
       return Right(response);
     } on DioError catch (e) {
