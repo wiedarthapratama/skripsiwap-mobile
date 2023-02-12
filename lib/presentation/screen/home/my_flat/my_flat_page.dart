@@ -182,7 +182,7 @@ class _MyFlatPageState extends State<MyFlatPage> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    'Pembayaran ke ${position + 1}',
+                                                    model.judul,
                                                     style: WTextStyle
                                                         .subtitle2.bold,
                                                   ),
