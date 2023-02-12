@@ -11,6 +11,7 @@ part 'pembayaran_model.g.dart';
 class PembayaranModel with _$PembayaranModel {
   factory PembayaranModel({
     required int id,
+    required String judul,
     @JsonKey(name: 'id_user') required int idUser,
     @JsonKey(name: 'id_pemilik') required int idPemilik,
     @JsonKey(name: 'id_kost') required int idKos,

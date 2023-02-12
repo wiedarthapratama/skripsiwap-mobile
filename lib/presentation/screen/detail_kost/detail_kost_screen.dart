@@ -71,18 +71,7 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                               padding: const EdgeInsets.only(top: 12),
                               child: Row(
                                 children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      if (!await launchUrlString(
-                                          'whatsapp://send?phone=${viewModel.model.kos?.pemilik?.user?.phoneInternational}')) {
-                                        WModal.show(context,
-                                            title: 'Gagal',
-                                            message:
-                                                'Whatsapp tidak terinstall');
-                                      }
-                                    },
-                                    child: const Icon(Icons.whatsapp),
-                                  ),
+                                  Container(),
                                   if (viewModel.model.kos?.linkMaps != null &&
                                       (viewModel.model.kos?.linkMaps ?? '')
                                           .validateUrl)
@@ -246,6 +235,34 @@ class _DetailKostScreenState extends State<DetailKostScreen> {
                                       fit: BoxFit.cover,
                                     ),
                                   )),
+                        ),
+                        WSpacing.vertical.size8,
+                        Text(
+                          'Pemilik',
+                          style: WTextStyle.body1.bold,
+                        ),
+                        WSpacing.vertical.size4,
+                        InkWell(
+                          onTap: () async {
+                            if (!await launchUrlString(
+                                'whatsapp://send?phone=${viewModel.model.kos?.pemilik?.user?.phoneInternational}')) {
+                              WModal.show(context,
+                                  title: 'Gagal',
+                                  message: 'Whatsapp tidak terinstall');
+                            }
+                          },
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.person,
+                              size: 50,
+                            ),
+                            title: Text(
+                                viewModel.model.kos?.pemilik?.user?.name ??
+                                    'Nama Pemilik'),
+                            subtitle: Text(
+                                viewModel.model.kos?.pemilik?.user?.nohp ??
+                                    'Telepon'),
+                          ),
                         ),
                       ],
                     ),
